@@ -168,7 +168,7 @@ python -m scraper --use-cache
 ### 測試
 
 ```powershell
-python -m pytest                  # 19 項離線測試
+python -m pytest                  # 20 項離線測試
 $env:RUN_LIVE_TESTS="1"; python -m pytest tests/test_live.py   # 即時來源測試
 ```
 

@@ -283,9 +283,9 @@ JSON 欄位在需求建議格式上擴充：
 
 測試結果（2026-11-08）：
 
-- 離線測試：19 passed
+- 離線測試：20 passed
 - 即時來源測試：2 passed（需 RUN_LIVE_TESTS=1）
-- 合計：21 項通過
+- 合計：22 項通過
 
 逐項驗收：
 
@@ -422,7 +422,7 @@ JSON 欄位在需求建議格式上擴充：
 - 完成環境調查、網站分析、使用者需求確認
 - 建立擷取程式與測試
 - 產出 6 位候選人、23 項政見資料集
-- 21 項測試通過（19 離線 + 2 即時）
+- 22 項測試通過（20 離線 + 2 即時）
 - 建立 GitHub Public Repository 並 push 成功
 - 首次 commit：f3d9ba4
 - Repository：https://github.com/QiuGavintw/penghu-magistrate-candidates
