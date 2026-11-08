@@ -335,20 +335,45 @@ JSON 欄位在需求建議格式上擴充：
 
 執行前檢查：
 
-- Repository 不存在（已驗證）
+- Repository 不存在（已驗證，GraphQL 回報 Could not resolve）
 - 無 .env、無 Token、無密碼、無金鑰
 - .gitignore 已排除 .venv/、.cache/、__pycache__/、.env
 - 所有必要文件均已建立
+- git status 確認僅納入 26 個專案檔案，未包含虛擬環境與快取
 
-待執行：
+執行結果：
 
-- git init
-- git add
-- git commit -m "feat: 建立2026澎湖縣長候選人公開資料集"
-- gh repo create QiuGavintw/penghu-magistrate-candidates --public
-- git push -u origin main
+- git init -b main：成功
+- 首次 commit：f3d9ba4
+  feat: 建立2026澎湖縣長候選人公開資料集
+- 建立 Repository：
+  gh repo create QiuGavintw/penghu-magistrate-candidates
+  --public --source=. --remote=origin --push
+- Push：成功，main 已追蹤 origin/main
+- Repository 網址：
+  https://github.com/QiuGavintw/penghu-magistrate-candidates
+- Visibility：PUBLIC（isPrivate=false）
+- Default Branch：main
+- 遠端檔案確認：README.md、candidates.json、candidates.csv、
+  platforms.csv、sources.md、scraper/、tests/、問題與解決紀錄
+  皆已出現在 Repository 根目錄
 
-（實際結果於 push 後補記）
+問題 H：PowerShell 顯示 git commit 訊息為亂碼
+- 現象：commit 後主控台顯示「建�?2026澎�?…」。
+- 分析：懷疑 PowerShell 將中文參數以非 UTF-8 傳給 git。
+- 查證：以 Python 讀取 git cat-file commit HEAD 的原始 bytes，
+  並以 UTF-8 嚴格解碼。
+- 結果：解碼成功，實際 commit 訊息為正確的
+  「feat: 建立2026澎湖縣長候選人公開資料集」。
+- 結論：僅為顯示層問題，Git 內的訊息正確。
+
+問題 I：本機無 git user.name / user.email
+- 分析：全域與區域 git config 皆未設定，直接 commit 會失敗。
+- 解決：僅在此專案設定區域身份為 QiuGavintw 與
+  GitHub noreply 信箱，不更動全域設定，避免影響其他專案。
+- 結果：commit 成功，未影響其他 Repository。
+
+第六階段驗收：通過。
 
 
 ------------------------------------------------------------------------
@@ -398,7 +423,9 @@ JSON 欄位在需求建議格式上擴充：
 - 建立擷取程式與測試
 - 產出 6 位候選人、23 項政見資料集
 - 21 項測試通過（19 離線 + 2 即時）
-- 準備建立 GitHub Public Repository
+- 建立 GitHub Public Repository 並 push 成功
+- 首次 commit：f3d9ba4
+- Repository：https://github.com/QiuGavintw/penghu-magistrate-candidates
 
 （後續修改請於此處追加日期與內容）
 ========================================================================
