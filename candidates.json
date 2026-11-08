@@ -1,0 +1,966 @@
+{
+  "election": "2026 澎湖縣長選舉",
+  "county": "澎湖縣",
+  "source": "https://taiwanpoliticalzoo.com/other-cities/penghu/",
+  "source_site": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+  "source_last_modified": "2026-11-02",
+  "last_updated": "2026-11-08",
+  "scraped_at": "2026-11-08T15:39:32+08:00",
+  "candidate_count": 6,
+  "platform_count": 23,
+  "data_scope_notes": [
+    "本資料集只重製來源網站已公開的短篇摘要與事實欄位，並保留來源連結與日期；照片、全文報導與其他素材權利屬原權利人。",
+    "來源網站未提供學歷、經歷、個人介紹；相關欄位以 null 表示，不自行補寫。",
+    "政見內容為來源網站的『新聞彙整摘要』，不是候選人完整政見全文，已以 is_full_platform=false 標記。",
+    "登記號次、黨派、登記日期為來源網站轉載之中央選舉委員會／澎湖縣選舉委員會資料；官方 PDF 未經本專案重新解析。",
+    "資料缺漏不代表候選人沒有相關政策或經歷。"
+  ],
+  "errors": [],
+  "candidates": [
+    {
+      "id": "26b00000-0000-4000-8000-000000000047",
+      "name": "許智富",
+      "number": 1,
+      "party": "無黨籍",
+      "registration_date": "2026-09-03",
+      "birth_date": "1979-10-02",
+      "zodiac": "天秤座",
+      "education": null,
+      "experience": null,
+      "biography": null,
+      "platform_count": 4,
+      "platforms": [
+        {
+          "order": 1,
+          "id": "26d00000-0000-4000-8000-000000004795",
+          "title": "離島急重症醫療強化",
+          "category": "長照醫療",
+          "content": "提出離島急重症醫療強化計畫，將醫療升級列為施政重點。",
+          "content_type": "新聞彙整摘要",
+          "is_full_platform": false,
+          "caveats": [
+            "原報導未列確切設備採購清單或醫院核定升級。"
+          ],
+          "source": {
+            "publisher": "鳴新聞",
+            "title": "澎湖縣長寶座候選人「增加」許智富參選",
+            "url": "https://www.minews.com.tw/2026/03/15964/",
+            "section": "許智富全方位施政藍圖段落",
+            "published_date": "2026-03-06",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004795/"
+        },
+        {
+          "order": 2,
+          "id": "26d00000-0000-4000-8000-000000004777",
+          "title": "智慧環保焚化爐",
+          "category": "環境",
+          "content": "主張興建智慧再生環保垃圾焚化爐，處理澎湖垃圾問題。",
+          "content_type": "新聞彙整摘要",
+          "is_full_platform": false,
+          "caveats": [
+            "尚未查得場址、處理量、污染防制與財務計畫。"
+          ],
+          "source": {
+            "publisher": "NOWnews今日新聞",
+            "title": "藍白合破局？澎湖「這人」拋震撼彈 退出民眾黨參戰百里侯",
+            "url": "https://www.nownews.com/news/6791322",
+            "section": "末段列出醫療強化、智慧焚化爐、重光園區轉型、高齡友善家園、地方自治五大政見",
+            "published_date": "2026-03-02",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004777/"
+        },
+        {
+          "order": 3,
+          "id": "26d00000-0000-4000-8000-000000004788",
+          "title": "重光園區再生",
+          "category": "觀光",
+          "content": "提出重光再生計畫，將園區轉型作為地方發展主軸。",
+          "content_type": "新聞彙整摘要",
+          "is_full_platform": false,
+          "caveats": [
+            "原始來源僅列計畫名稱，不延伸未證實的設施內容。"
+          ],
+          "source": {
+            "publisher": "鳴新聞",
+            "title": "澎湖縣長寶座候選人「增加」許智富參選",
+            "url": "https://www.minews.com.tw/2026/03/15964/",
+            "section": "許智富全方位施政藍圖段落",
+            "published_date": "2026-03-06",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004788/"
+        },
+        {
+          "order": 4,
+          "id": "26d00000-0000-4000-8000-000000004778",
+          "title": "高齡友善住宅",
+          "category": "居住",
+          "content": "鼓勵住宅加裝電梯，改善長者居住與出入環境。",
+          "content_type": "新聞彙整摘要",
+          "is_full_platform": false,
+          "caveats": [
+            "本項為2026參選主張；實施仍須預算、法規及行政程序。"
+          ],
+          "source": {
+            "publisher": "鳴新聞",
+            "title": "澎湖縣長寶座候選人「增加」許智富參選",
+            "url": "https://www.minews.com.tw/2026/03/15964/",
+            "section": "許智富全方位施政藍圖段落",
+            "published_date": "2026-03-06",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004778/"
+        }
+      ],
+      "sources": [
+        {
+          "type": "來源網站・縣市總覽",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/other-cities/penghu/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "來源網站・候選人頁",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/candidates/26b00000-0000-4000-8000-000000000047/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "來源網站・政見列表",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/candidates/26b00000-0000-4000-8000-000000000047/policies/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "中央選舉委員會・候選人登記彙總表",
+          "publisher": "中央選舉委員會",
+          "title": "中央選舉委員會 · 115年縣市長選舉候選人登記彙總表",
+          "url": "https://web.cec.gov.tw/api/file/370f3bbf-6408-4fdc-b8d8-9b9214913f74.pdf",
+          "section": "PDF第1頁／澎湖縣／縣市長登記欄",
+          "published_date": "2026-09-07",
+          "checked_date": "2026-10-16",
+          "note": "官方登記資料；本專案未重新解析 PDF，僅記錄來源頁所載資訊與連結。"
+        },
+        {
+          "type": "澎湖縣選舉委員會・抽籤號次",
+          "publisher": "澎湖縣選舉委員會",
+          "url": "https://www.cec.gov.tw/phec/article/65367",
+          "note": "2026-10-27抽籤・澎湖縣選舉委員會",
+          "checked_date": "2026-11-08"
+        }
+      ],
+      "verified_at": "2026-10-16",
+      "qualification_status": "資格審定與正式公告尚待補核。推薦欄原文：無。",
+      "data_origin": {
+        "basic_profile": "台灣選舉懶人包・候選人頁（來源網站自行整理）",
+        "registration": "台灣選舉懶人包轉載中央選舉委員會登記彙總表",
+        "platforms": "台灣選舉懶人包・政見頁（新聞彙整摘要，非完整政見全文）"
+      },
+      "partial": false,
+      "missing_fields": [
+        "education",
+        "experience",
+        "biography"
+      ],
+      "completeness": {
+        "fields_expected": 6,
+        "fields_provided": 3,
+        "field_ratio": 0.5,
+        "platforms_total": 4,
+        "platforms_with_content": 4,
+        "platforms_with_source_url": 4,
+        "platforms_with_full_text": 0
+      }
+    },
+    {
+      "id": "26b00000-0000-4000-8000-000000000046",
+      "name": "周倪安",
+      "number": 2,
+      "party": "台聯黨",
+      "registration_date": "2026-09-03",
+      "birth_date": "1972-10-07",
+      "zodiac": "天秤座",
+      "education": null,
+      "experience": null,
+      "biography": null,
+      "platform_count": 5,
+      "platforms": [
+        {
+          "order": 1,
+          "id": "26d00000-0000-4000-8000-000000004620",
+          "title": "珊瑚復育與潛水觀光",
+          "category": "觀光",
+          "content": "擴大復育珊瑚礁、結合潛水與自然景觀，並規劃地下水庫園區。",
+          "content_type": "候選人公開自述",
+          "is_full_platform": false,
+          "caveats": [
+            "政黨官方競選聲明，尚無工程位置、經費或環評細節。"
+          ],
+          "source": {
+            "publisher": "台聯黨",
+            "title": "2026新聞稿：20260821 搶救澎湖觀光 應該從根本下手",
+            "url": "https://www.tsu.org.tw/%E5%89%AF%E6%9C%AC-2025%E6%96%B0%E8%81%9E%E7%A8%BF",
+            "section": "20260821新聞稿中周倪安當選後觀光政策段落",
+            "published_date": "2026-08-21",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004620/"
+        },
+        {
+          "order": 2,
+          "id": "26d00000-0000-4000-8000-000000004638",
+          "title": "淡季文化與美食觀光",
+          "category": "觀光",
+          "content": "串聯宗教文化走讀、秋冬文史講座與傳統美食祭，搭配淡季機票和旅宿優惠。",
+          "content_type": "候選人公開自述",
+          "is_full_platform": false,
+          "caveats": [
+            "機票與旅宿優惠仍需業者協調。"
+          ],
+          "source": {
+            "publisher": "台聯黨",
+            "title": "2026新聞稿：20260821 搶救澎湖觀光 應該從根本下手",
+            "url": "https://www.tsu.org.tw/%E5%89%AF%E6%9C%AC-2025%E6%96%B0%E8%81%9E%E7%A8%BF",
+            "section": "20260821新聞稿中周倪安當選後觀光政策段落",
+            "published_date": "2026-08-21",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004638/"
+        },
+        {
+          "order": 3,
+          "id": "26d00000-0000-4000-8000-000000004615",
+          "title": "戰地文化資產活化",
+          "category": "文化",
+          "content": "主張重建蛇頭山紅毛城，活化砲台堡壘與地下坑道，發展戰地歷史旅遊。",
+          "content_type": "候選人公開自述",
+          "is_full_platform": false,
+          "caveats": [
+            "涉及文化資產與工程程序；未查得具體核定方案。"
+          ],
+          "source": {
+            "publisher": "台聯黨",
+            "title": "2026新聞稿：20260821 搶救澎湖觀光 應該從根本下手",
+            "url": "https://www.tsu.org.tw/%E5%89%AF%E6%9C%AC-2025%E6%96%B0%E8%81%9E%E7%A8%BF",
+            "section": "20260821新聞稿中周倪安當選後觀光政策段落",
+            "published_date": "2026-08-21",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004615/"
+        },
+        {
+          "order": 4,
+          "id": "policy-followup-20261102-n5-15",
+          "title": "漁民成本與海洋復育",
+          "category": "農業",
+          "content": "主張不將不合理政策成本轉嫁漁民船主，並兼顧海洋資源復育與生計。",
+          "content_type": "新聞彙整摘要",
+          "is_full_platform": false,
+          "caveats": [
+            "候選人公開主張，非已核定或施行成果；適用資格、經費與期程未載者不推填。"
+          ],
+          "source": {
+            "publisher": "中央社",
+            "title": "周倪安成立競選總部 喊話守護澎湖漁業",
+            "url": "https://www.cna.com.tw/news/aipl/202611010073.aspx",
+            "section": "漁業、生態復育、台澎海底隧道可行性及就業",
+            "published_date": "2026-11-01",
+            "checked_date": "2026-11-02"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/policy-followup-20261102-n5-15/"
+        },
+        {
+          "order": 5,
+          "id": "policy-followup-20261102-n5-16",
+          "title": "研究台澎海底隧道可行性",
+          "category": "交通",
+          "content": "倡議長遠研究台澎海底隧道；沒有核定路線、造價或工期。",
+          "content_type": "新聞彙整摘要",
+          "is_full_platform": false,
+          "caveats": [
+            "候選人公開主張，非已核定或施行成果；適用資格、經費與期程未載者不推填。"
+          ],
+          "source": {
+            "publisher": "中央社",
+            "title": "周倪安成立競選總部 喊話守護澎湖漁業",
+            "url": "https://www.cna.com.tw/news/aipl/202611010073.aspx",
+            "section": "漁業、生態復育、台澎海底隧道可行性及就業",
+            "published_date": "2026-11-01",
+            "checked_date": "2026-11-02"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/policy-followup-20261102-n5-16/"
+        }
+      ],
+      "sources": [
+        {
+          "type": "來源網站・縣市總覽",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/other-cities/penghu/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "來源網站・候選人頁",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/candidates/26b00000-0000-4000-8000-000000000046/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "來源網站・政見列表",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/candidates/26b00000-0000-4000-8000-000000000046/policies/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "中央選舉委員會・候選人登記彙總表",
+          "publisher": "中央選舉委員會",
+          "title": "中央選舉委員會 · 115年縣市長選舉候選人登記彙總表",
+          "url": "https://web.cec.gov.tw/api/file/370f3bbf-6408-4fdc-b8d8-9b9214913f74.pdf",
+          "section": "PDF第1頁／澎湖縣／縣市長登記欄",
+          "published_date": "2026-09-07",
+          "checked_date": "2026-10-16",
+          "note": "官方登記資料；本專案未重新解析 PDF，僅記錄來源頁所載資訊與連結。"
+        },
+        {
+          "type": "澎湖縣選舉委員會・抽籤號次",
+          "publisher": "澎湖縣選舉委員會",
+          "url": "https://www.cec.gov.tw/phec/article/65367",
+          "note": "2026-10-27抽籤・澎湖縣選舉委員會",
+          "checked_date": "2026-11-08"
+        }
+      ],
+      "verified_at": "2026-10-16",
+      "qualification_status": "資格審定與正式公告尚待補核。推薦欄原文：台聯黨。",
+      "data_origin": {
+        "basic_profile": "台灣選舉懶人包・候選人頁（來源網站自行整理）",
+        "registration": "台灣選舉懶人包轉載中央選舉委員會登記彙總表",
+        "platforms": "台灣選舉懶人包・政見頁（新聞彙整摘要，非完整政見全文）"
+      },
+      "partial": false,
+      "missing_fields": [
+        "education",
+        "experience",
+        "biography"
+      ],
+      "completeness": {
+        "fields_expected": 6,
+        "fields_provided": 3,
+        "field_ratio": 0.5,
+        "platforms_total": 5,
+        "platforms_with_content": 5,
+        "platforms_with_source_url": 5,
+        "platforms_with_full_text": 0
+      }
+    },
+    {
+      "id": "26b00000-0000-4000-8000-000000000049",
+      "name": "葉竹林",
+      "number": 3,
+      "party": "無黨籍",
+      "registration_date": "2026-09-04",
+      "birth_date": "1962-01-06",
+      "zodiac": "摩羯座",
+      "education": null,
+      "experience": null,
+      "biography": null,
+      "platform_count": 3,
+      "platforms": [
+        {
+          "order": 1,
+          "id": "26d00000-0000-4000-8000-000000004912",
+          "title": "任內興建焚化爐",
+          "category": "環境",
+          "content": "承諾任內興建焚化爐，處理離島垃圾危機。",
+          "content_type": "新聞彙整摘要",
+          "is_full_platform": false,
+          "caveats": [
+            "尚無經核定場址、容量、經費及環評資料。"
+          ],
+          "source": {
+            "publisher": "聯合報",
+            "title": "再攪動藍綠選局？葉竹林今登記參選澎湖縣長 曾拿下3成選票分蝕藍營",
+            "url": "https://udn.com/vote2026/story/124652/9734922",
+            "section": "記者巫鴻瑋報導，第1至3段政見",
+            "published_date": "2026-09-04",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004912/"
+        },
+        {
+          "order": 2,
+          "id": "26d00000-0000-4000-8000-000000004965",
+          "title": "反對陸域風機",
+          "category": "環境",
+          "content": "反對在澎湖陸域設置風力發電設施，以維護自然環境與居民生活。",
+          "content_type": "新聞彙整摘要",
+          "is_full_platform": false,
+          "caveats": [
+            "本項為2026參選主張；實施仍須預算、法規及行政程序。"
+          ],
+          "source": {
+            "publisher": "聯合報",
+            "title": "再攪動藍綠選局？葉竹林今登記參選澎湖縣長 曾拿下3成選票分蝕藍營",
+            "url": "https://udn.com/vote2026/story/124652/9734922",
+            "section": "記者巫鴻瑋報導，第1至3段政見",
+            "published_date": "2026-09-04",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004965/"
+        },
+        {
+          "order": 3,
+          "id": "26d00000-0000-4000-8000-000000004950",
+          "title": "普發一萬元振興金",
+          "category": "經濟",
+          "content": "主張2027年作為經濟年，規劃每位縣民發1萬元振興金。",
+          "content_type": "新聞彙整摘要",
+          "is_full_platform": false,
+          "caveats": [
+            "報導於2026年9月稱『明年』；實際財源、資格與辦法尚未公布。"
+          ],
+          "source": {
+            "publisher": "聯合報",
+            "title": "再攪動藍綠選局？葉竹林今登記參選澎湖縣長 曾拿下3成選票分蝕藍營",
+            "url": "https://udn.com/vote2026/story/124652/9734922",
+            "section": "記者巫鴻瑋報導，第1至3段政見",
+            "published_date": "2026-09-04",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004950/"
+        }
+      ],
+      "sources": [
+        {
+          "type": "來源網站・縣市總覽",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/other-cities/penghu/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "來源網站・候選人頁",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/candidates/26b00000-0000-4000-8000-000000000049/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "來源網站・政見列表",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/candidates/26b00000-0000-4000-8000-000000000049/policies/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "中央選舉委員會・候選人登記彙總表",
+          "publisher": "中央選舉委員會",
+          "title": "中央選舉委員會 · 115年縣市長選舉候選人登記彙總表",
+          "url": "https://web.cec.gov.tw/api/file/370f3bbf-6408-4fdc-b8d8-9b9214913f74.pdf",
+          "section": "PDF第1頁／澎湖縣／縣市長登記欄",
+          "published_date": "2026-09-07",
+          "checked_date": "2026-10-16",
+          "note": "官方登記資料；本專案未重新解析 PDF，僅記錄來源頁所載資訊與連結。"
+        },
+        {
+          "type": "澎湖縣選舉委員會・抽籤號次",
+          "publisher": "澎湖縣選舉委員會",
+          "url": "https://www.cec.gov.tw/phec/article/65367",
+          "note": "2026-10-27抽籤・澎湖縣選舉委員會",
+          "checked_date": "2026-11-08"
+        }
+      ],
+      "verified_at": "2026-10-16",
+      "qualification_status": "資格審定與正式公告尚待補核。推薦欄原文：無。",
+      "data_origin": {
+        "basic_profile": "台灣選舉懶人包・候選人頁（來源網站自行整理）",
+        "registration": "台灣選舉懶人包轉載中央選舉委員會登記彙總表",
+        "platforms": "台灣選舉懶人包・政見頁（新聞彙整摘要，非完整政見全文）"
+      },
+      "partial": false,
+      "missing_fields": [
+        "education",
+        "experience",
+        "biography"
+      ],
+      "completeness": {
+        "fields_expected": 6,
+        "fields_provided": 3,
+        "field_ratio": 0.5,
+        "platforms_total": 3,
+        "platforms_with_content": 3,
+        "platforms_with_source_url": 3,
+        "platforms_with_full_text": 0
+      }
+    },
+    {
+      "id": "26b00000-0000-4000-8000-000000000044",
+      "name": "吳淑瑾",
+      "number": 4,
+      "party": "民主進步黨",
+      "registration_date": "2026-09-02",
+      "birth_date": "1957-09-16",
+      "zodiac": "處女座",
+      "education": null,
+      "experience": null,
+      "biography": null,
+      "platform_count": 2,
+      "platforms": [
+        {
+          "order": 1,
+          "id": "26d00000-0000-4000-8000-000000004468",
+          "title": "每年一億元醫療提升",
+          "category": "長照醫療",
+          "content": "提出每年挹注1億元聘請專科醫師長駐、改善第一線醫護福利及添購救命設備。",
+          "content_type": "新聞彙整摘要",
+          "is_full_platform": false,
+          "caveats": [
+            "吳淑瑾明確將經費轉向醫療；不可套用陳光復原主張的全縣免健保費。"
+          ],
+          "source": {
+            "publisher": "中央社",
+            "title": "吳淑瑾選澎湖縣長 賴清德：延續陳光復治理責任",
+            "url": "https://www.cna.com.tw/news/aipl/202606170240.aspx",
+            "section": "吳淑瑾第一個政見：每年一億元提升地方醫療",
+            "published_date": "2026-06-17",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004468/"
+        },
+        {
+          "order": 2,
+          "id": "26d00000-0000-4000-8000-000000004422",
+          "title": "國際航段串聯澎湖",
+          "category": "交通",
+          "content": "提出買國際機票搭配澎湖國內航段，透過中央政策與產官合作降低外籍旅客轉機成本。",
+          "content_type": "新聞彙整摘要",
+          "is_full_platform": false,
+          "caveats": [
+            "涉及航空業者與中央協調，報導未列既定航司、票價與執行日期。"
+          ],
+          "source": {
+            "publisher": "聯合報",
+            "title": "交長陳世凱澎湖視察 吳淑瑾拋交通政見促中央地方攜手發揮觀光運能",
+            "url": "https://udn.com/news/story/6656/9722830",
+            "section": "吳淑瑾海空交通與國際機票政見段落",
+            "published_date": "2026-08-30",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004422/"
+        }
+      ],
+      "sources": [
+        {
+          "type": "來源網站・縣市總覽",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/other-cities/penghu/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "來源網站・候選人頁",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/candidates/26b00000-0000-4000-8000-000000000044/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "來源網站・政見列表",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/candidates/26b00000-0000-4000-8000-000000000044/policies/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "中央選舉委員會・候選人登記彙總表",
+          "publisher": "中央選舉委員會",
+          "title": "中央選舉委員會 · 115年縣市長選舉候選人登記彙總表",
+          "url": "https://web.cec.gov.tw/api/file/370f3bbf-6408-4fdc-b8d8-9b9214913f74.pdf",
+          "section": "PDF第1頁／澎湖縣／縣市長登記欄",
+          "published_date": "2026-09-07",
+          "checked_date": "2026-10-16",
+          "note": "官方登記資料；本專案未重新解析 PDF，僅記錄來源頁所載資訊與連結。"
+        },
+        {
+          "type": "澎湖縣選舉委員會・抽籤號次",
+          "publisher": "澎湖縣選舉委員會",
+          "url": "https://www.cec.gov.tw/phec/article/65367",
+          "note": "2026-10-27抽籤・澎湖縣選舉委員會",
+          "checked_date": "2026-11-08"
+        }
+      ],
+      "verified_at": "2026-10-16",
+      "qualification_status": "資格審定與正式公告尚待補核。推薦欄原文：民主進步黨。",
+      "data_origin": {
+        "basic_profile": "台灣選舉懶人包・候選人頁（來源網站自行整理）",
+        "registration": "台灣選舉懶人包轉載中央選舉委員會登記彙總表",
+        "platforms": "台灣選舉懶人包・政見頁（新聞彙整摘要，非完整政見全文）"
+      },
+      "partial": false,
+      "missing_fields": [
+        "education",
+        "experience",
+        "biography"
+      ],
+      "completeness": {
+        "fields_expected": 6,
+        "fields_provided": 3,
+        "field_ratio": 0.5,
+        "platforms_total": 2,
+        "platforms_with_content": 2,
+        "platforms_with_source_url": 2,
+        "platforms_with_full_text": 0
+      }
+    },
+    {
+      "id": "26b00000-0000-4000-8000-000000000045",
+      "name": "陳振中",
+      "number": 5,
+      "party": "中國國民黨",
+      "registration_date": "2026-09-03",
+      "birth_date": "1963-01-11",
+      "zodiac": "摩羯座",
+      "education": null,
+      "experience": null,
+      "biography": null,
+      "platform_count": 4,
+      "platforms": [
+        {
+          "order": 1,
+          "id": "26d00000-0000-4000-8000-000000004529",
+          "title": "醫護留任與看護支持",
+          "category": "長照醫療",
+          "content": "提出醫護留任獎金、外籍看護補助及醫療資源配置改善。",
+          "content_type": "候選人公開自述",
+          "is_full_platform": false,
+          "caveats": [
+            "官方新聞稿未載補助額度或適用資格。"
+          ],
+          "source": {
+            "publisher": "中國國民黨",
+            "title": "移師澎湖開中常會！鄭麗文呼籲放下小我力挺陳振中 誓言重啟小三通、升級醫療托育 翻轉觀光",
+            "url": "https://www.kmt.org.tw/2026/07/blog-post_55.html",
+            "section": "新聞稿最後兩段：陳振中本人提出解方；不採前段黨主席發言為候選人承諾",
+            "published_date": "2026-07-08",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004529/"
+        },
+        {
+          "order": 2,
+          "id": "26d00000-0000-4000-8000-000000004579",
+          "title": "閒置校園托嬰空間",
+          "category": "托育",
+          "content": "利用閒置教室與校園空間改為托嬰中心，增加在地托育服務。",
+          "content_type": "候選人公開自述",
+          "is_full_platform": false,
+          "caveats": [
+            "尚未列校址、容量與設置時程。"
+          ],
+          "source": {
+            "publisher": "中國國民黨",
+            "title": "移師澎湖開中常會！鄭麗文呼籲放下小我力挺陳振中 誓言重啟小三通、升級醫療托育 翻轉觀光",
+            "url": "https://www.kmt.org.tw/2026/07/blog-post_55.html",
+            "section": "新聞稿最後兩段：陳振中本人提出解方；不採前段黨主席發言為候選人承諾",
+            "published_date": "2026-07-08",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004579/"
+        },
+        {
+          "order": 3,
+          "id": "26d00000-0000-4000-8000-000000004551",
+          "title": "深度旅遊與媽祖文化",
+          "category": "觀光",
+          "content": "以文化行銷取代單純追求人數，提出媽祖文化節與觀光硬體升級。",
+          "content_type": "候選人公開自述",
+          "is_full_platform": false,
+          "caveats": [
+            "屬發展方向，未列完整活動或投資計畫。"
+          ],
+          "source": {
+            "publisher": "中國國民黨",
+            "title": "移師澎湖開中常會！鄭麗文呼籲放下小我力挺陳振中 誓言重啟小三通、升級醫療托育 翻轉觀光",
+            "url": "https://www.kmt.org.tw/2026/07/blog-post_55.html",
+            "section": "新聞稿最後兩段：陳振中本人提出解方；不採前段黨主席發言為候選人承諾",
+            "published_date": "2026-07-08",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004551/"
+        },
+        {
+          "order": 4,
+          "id": "26d00000-0000-4000-8000-6814d2893711",
+          "title": "小三通與多元觀光客源",
+          "category": "觀光",
+          "content": "支持爭取小三通及其他國內外客源，以文化、海洋聚落與農漁特色增加停留內容。",
+          "content_type": "新聞彙整摘要",
+          "is_full_platform": false,
+          "caveats": [
+            "候選人公開主張，尚非已執行或核定政策；未載明的資格、預算及時程不推填。"
+          ],
+          "source": {
+            "publisher": "中央社",
+            "title": "陳振中盼爭取小三通客源等 吳淑瑾提國際旅客進澎湖",
+            "url": "https://www.cna.com.tw/news/aloc/202610190213.aspx",
+            "section": "本人具名發言段落",
+            "published_date": "2026-10-19",
+            "checked_date": "2026-10-19"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-6814d2893711/"
+        }
+      ],
+      "sources": [
+        {
+          "type": "來源網站・縣市總覽",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/other-cities/penghu/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "來源網站・候選人頁",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/candidates/26b00000-0000-4000-8000-000000000045/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "來源網站・政見列表",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/candidates/26b00000-0000-4000-8000-000000000045/policies/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "中央選舉委員會・候選人登記彙總表",
+          "publisher": "中央選舉委員會",
+          "title": "中央選舉委員會 · 115年縣市長選舉候選人登記彙總表",
+          "url": "https://web.cec.gov.tw/api/file/370f3bbf-6408-4fdc-b8d8-9b9214913f74.pdf",
+          "section": "PDF第1頁／澎湖縣／縣市長登記欄",
+          "published_date": "2026-09-07",
+          "checked_date": "2026-10-16",
+          "note": "官方登記資料；本專案未重新解析 PDF，僅記錄來源頁所載資訊與連結。"
+        },
+        {
+          "type": "澎湖縣選舉委員會・抽籤號次",
+          "publisher": "澎湖縣選舉委員會",
+          "url": "https://www.cec.gov.tw/phec/article/65367",
+          "note": "2026-10-27抽籤・澎湖縣選舉委員會",
+          "checked_date": "2026-11-08"
+        }
+      ],
+      "verified_at": "2026-10-16",
+      "qualification_status": "資格審定與正式公告尚待補核。推薦欄原文：中國國民黨。",
+      "data_origin": {
+        "basic_profile": "台灣選舉懶人包・候選人頁（來源網站自行整理）",
+        "registration": "台灣選舉懶人包轉載中央選舉委員會登記彙總表",
+        "platforms": "台灣選舉懶人包・政見頁（新聞彙整摘要，非完整政見全文）"
+      },
+      "partial": false,
+      "missing_fields": [
+        "education",
+        "experience",
+        "biography"
+      ],
+      "completeness": {
+        "fields_expected": 6,
+        "fields_provided": 3,
+        "field_ratio": 0.5,
+        "platforms_total": 4,
+        "platforms_with_content": 4,
+        "platforms_with_source_url": 4,
+        "platforms_with_full_text": 0
+      }
+    },
+    {
+      "id": "26b00000-0000-4000-8000-000000000048",
+      "name": "陳盡川",
+      "number": 6,
+      "party": "無黨籍",
+      "registration_date": "2026-09-03",
+      "birth_date": "1961-03-25",
+      "zodiac": "牡羊座",
+      "education": null,
+      "experience": null,
+      "biography": null,
+      "platform_count": 5,
+      "platforms": [
+        {
+          "order": 1,
+          "id": "26d00000-0000-4000-8000-000000004816",
+          "title": "海洋保育與漁業復育",
+          "category": "環境",
+          "content": "以恢復富饒海洋為目標，推動漁業資源復育，使漁業與觀光能長期共存。",
+          "content_type": "新聞彙整摘要",
+          "is_full_platform": false,
+          "caveats": [
+            "本項為2026參選主張；實施仍須預算、法規及行政程序。"
+          ],
+          "source": {
+            "publisher": "澎湖日報",
+            "title": "陳盡川宣布「海、山、路、觀光」施政願景 將投入澎湖縣長選舉",
+            "url": "https://penghudaily.blogspot.com/2026/01/blog-post_476.html",
+            "section": "記者李復源報導：海、山、路、觀光及治縣委員會各段落",
+            "published_date": "2026-01-04",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004816/"
+        },
+        {
+          "order": 2,
+          "id": "26d00000-0000-4000-8000-000000004834",
+          "title": "土地與銀合歡資源化",
+          "category": "農漁業",
+          "content": "盤點土地、發展地方農業與田園綠美化，推動銀合歡資源化開發。",
+          "content_type": "新聞彙整摘要",
+          "is_full_platform": false,
+          "caveats": [
+            "本項為2026參選主張；實施仍須預算、法規及行政程序。"
+          ],
+          "source": {
+            "publisher": "澎湖日報",
+            "title": "陳盡川宣布「海、山、路、觀光」施政願景 將投入澎湖縣長選舉",
+            "url": "https://penghudaily.blogspot.com/2026/01/blog-post_476.html",
+            "section": "記者李復源報導：海、山、路、觀光及治縣委員會各段落",
+            "published_date": "2026-01-04",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004834/"
+        },
+        {
+          "order": 3,
+          "id": "26d00000-0000-4000-8000-000000004804",
+          "title": "縣道與產業道路品質",
+          "category": "交通",
+          "content": "全面檢視縣道與產業道路，改善路面安全與舒適度。",
+          "content_type": "新聞彙整摘要",
+          "is_full_platform": false,
+          "caveats": [
+            "本項為2026參選主張；實施仍須預算、法規及行政程序。"
+          ],
+          "source": {
+            "publisher": "澎湖日報",
+            "title": "陳盡川宣布「海、山、路、觀光」施政願景 將投入澎湖縣長選舉",
+            "url": "https://penghudaily.blogspot.com/2026/01/blog-post_476.html",
+            "section": "記者李復源報導：海、山、路、觀光及治縣委員會各段落",
+            "published_date": "2026-01-04",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004804/"
+        },
+        {
+          "order": 4,
+          "id": "26d00000-0000-4000-8000-000000004801",
+          "title": "四季海洋運動觀光",
+          "category": "觀光",
+          "content": "以田園、海洋、傳統產業及體育海洋運動打造四季活動。",
+          "content_type": "新聞彙整摘要",
+          "is_full_platform": false,
+          "caveats": [
+            "本項為2026參選主張；實施仍須預算、法規及行政程序。"
+          ],
+          "source": {
+            "publisher": "澎湖日報",
+            "title": "陳盡川宣布「海、山、路、觀光」施政願景 將投入澎湖縣長選舉",
+            "url": "https://penghudaily.blogspot.com/2026/01/blog-post_476.html",
+            "section": "記者李復源報導：海、山、路、觀光及治縣委員會各段落",
+            "published_date": "2026-01-04",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004801/"
+        },
+        {
+          "order": 5,
+          "id": "26d00000-0000-4000-8000-000000004850",
+          "title": "治縣委員會與捐薪",
+          "category": "行政治理",
+          "content": "廣邀各界成立治縣委員會，承諾捐出縣長薪資及津貼作運作基金。",
+          "content_type": "新聞彙整摘要",
+          "is_full_platform": false,
+          "caveats": [
+            "委員會法制地位、成員遴選與基金監督方式尚未查得。"
+          ],
+          "source": {
+            "publisher": "澎湖日報",
+            "title": "陳盡川宣布「海、山、路、觀光」施政願景 將投入澎湖縣長選舉",
+            "url": "https://penghudaily.blogspot.com/2026/01/blog-post_476.html",
+            "section": "記者李復源報導：海、山、路、觀光及治縣委員會各段落",
+            "published_date": "2026-01-04",
+            "checked_date": "2026-10-16"
+          },
+          "url": "https://taiwanpoliticalzoo.com/policies/26d00000-0000-4000-8000-000000004850/"
+        }
+      ],
+      "sources": [
+        {
+          "type": "來源網站・縣市總覽",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/other-cities/penghu/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "來源網站・候選人頁",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/candidates/26b00000-0000-4000-8000-000000000048/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "來源網站・政見列表",
+          "publisher": "台灣選舉懶人包（taiwanpoliticalzoo.com）",
+          "url": "https://taiwanpoliticalzoo.com/candidates/26b00000-0000-4000-8000-000000000048/policies/",
+          "published_date": "2026-11-02",
+          "checked_date": "2026-11-08"
+        },
+        {
+          "type": "中央選舉委員會・候選人登記彙總表",
+          "publisher": "中央選舉委員會",
+          "title": "中央選舉委員會 · 115年縣市長選舉候選人登記彙總表",
+          "url": "https://web.cec.gov.tw/api/file/370f3bbf-6408-4fdc-b8d8-9b9214913f74.pdf",
+          "section": "PDF第1頁／澎湖縣／縣市長登記欄",
+          "published_date": "2026-09-07",
+          "checked_date": "2026-10-16",
+          "note": "官方登記資料；本專案未重新解析 PDF，僅記錄來源頁所載資訊與連結。"
+        },
+        {
+          "type": "澎湖縣選舉委員會・抽籤號次",
+          "publisher": "澎湖縣選舉委員會",
+          "url": "https://www.cec.gov.tw/phec/article/65367",
+          "note": "2026-10-27抽籤・澎湖縣選舉委員會",
+          "checked_date": "2026-11-08"
+        }
+      ],
+      "verified_at": "2026-10-16",
+      "qualification_status": "資格審定與正式公告尚待補核。推薦欄原文：無。",
+      "data_origin": {
+        "basic_profile": "台灣選舉懶人包・候選人頁（來源網站自行整理）",
+        "registration": "台灣選舉懶人包轉載中央選舉委員會登記彙總表",
+        "platforms": "台灣選舉懶人包・政見頁（新聞彙整摘要，非完整政見全文）"
+      },
+      "partial": false,
+      "missing_fields": [
+        "education",
+        "experience",
+        "biography"
+      ],
+      "completeness": {
+        "fields_expected": 6,
+        "fields_provided": 3,
+        "field_ratio": 0.5,
+        "platforms_total": 5,
+        "platforms_with_content": 5,
+        "platforms_with_source_url": 5,
+        "platforms_with_full_text": 0
+      }
+    }
+  ]
+}

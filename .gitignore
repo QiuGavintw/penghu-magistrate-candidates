@@ -1,0 +1,24 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+
+# 本機擷取快取（不公開重製完整 HTML）
+.cache/
+
+# 環境與憑證
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+
+# 編輯器與系統
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+.DS_Store
