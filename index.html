@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>澎湖縣長候選人政見 | 2026</title>
+<style>
+:root {
+  --beige-bg: #F5F0E8;
+  --beige-card: #FFFDF8;
+  --beige-border: #E8DFD0;
+  --beige-text: #3A3228;
+  --beige-muted: #7A7060;
+  --beige-accent: #B8956B;
+  --beige-highlight: #FFF3D6;
+  --green-dot: #4A8C5C;
+  --blue-dot: #4A7BA8;
+  --orange-dot: #C87830;
+  --purple-dot: #8B6BA8;
+  --red-dot: #B84A4A;
+  --teal-dot: #3A8C8C;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  background: var(--beige-bg);
+  color: var(--beige-text);
+  line-height: 1.8;
+  padding: 2rem 1rem;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 2rem 0;
+  border-bottom: 2px solid var(--beige-border);
+}
+header h1 {
+  font-size: 1.8rem;
+  color: var(--beige-text);
+  margin-bottom: 0.5rem;
+}
+header p {
+  color: var(--beige-muted);
+  font-size: 0.95rem;
+}
+.info-banner {
+  background: var(--beige-highlight);
+  border-left: 4px solid var(--beige-accent);
+  padding: 1rem 1.25rem;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+.info-banner strong { color: var(--beige-accent); }
+
+.candidate-card {
+  background: var(--beige-card);
+  border: 1px solid var(--beige-border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.candidate-card:hover {
+  box-shadow: 0 4px 20px rgba(58,50,40,0.08);
+}
+.card-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--beige-border);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  user-select: none;
+}
+.card-header:hover { background: #FAF7F0; }
+.party-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.party-badge::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.party-dpp { background: #e8f5e9; color: #2e7d32; }
+.party-dpp::before { background: var(--green-dot); }
+.party-kmt { background: #e3f2fd; color: #1565c0; }
+.party-kmt::before { background: var(--blue-dot); }
+.party-ttp { background: #fff3e0; color: #e65100; }
+.party-ttp::before { background: var(--orange-dot); }
+.party-npp { background: #f3e5f5; color: #6a1b9a; }
+.party-npp::before { background: var(--purple-dot); }
+.party-independent { background: #fce4ec; color: #880e4f; }
+.party-independent::before { background: var(--red-dot); }
+.party-teal { background: #e0f2f1; color: #00695c; }
+.party-teal::before { background: var(--teal-dot); }
+
+.card-header h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--beige-text);
+  flex: 1;
+}
+.ticket-number {
+  font-size: 0.85rem;
+  color: var(--beige-muted);
+  font-weight: 600;
+}
+.chevron {
+  color: var(--beige-muted);
+  font-size: 0.8rem;
+  transition: transform 0.2s;
+}
+.candidate-card.open .chevron { transform: rotate(180deg); }
+.card-body {
+  display: none;
+  padding: 1.5rem;
+}
+.candidate-card.open .card-body { display: block; }
+
+.policy-section {
+  margin-bottom: 1.25rem;
+}
+.policy-section h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--beige-accent);
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.policy-item {
+  background: #F9F6F0;
+  border: 1px solid var(--beige-border);
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.92rem;
+}
+.policy-item .source {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--beige-muted);
+}
+.policy-item .source a {
+  color: var(--beige-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.source-tag {
+  display: inline-block;
+  background: var(--beige-highlight);
+  color: var(--beige-accent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.social-media-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #4A7BA8;
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+.fb-icon { font-size: 0.85rem; }
+
+.tagline {
+  background: var(--beige-highlight);
+  border: 1px solid var(--beige-border);
+  border-radius: 8px;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+}
+.tagline strong { color: var(--beige-accent); }
+
+.sources-section {
+  background: var(--beige-card);
+  border: 1px solid var(--beige-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+.sources-section h2 {
+  font-size: 1rem;
+  color: var(--beige-accent);
+  margin-bottom: 1rem;
+}
+.source-list {
+  list-style: none;
+  font-size: 0.85rem;
+}
+.source-list li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--beige-border);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.source-list li:last-child { border-bottom: none; }
+.source-list a {
+  color: var(--beige-accent);
+  text-decoration: none;
+  word-break: break-all;
+}
+.source-list a:hover { text-decoration: underline; }
+
+footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem 0;
+  color: var(--beige-muted);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--beige-border);
+}
+
+.search-box {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--beige-border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: var(--beige-card);
+  color: var(--beige-text);
+  margin-bottom: 1.5rem;
+}
+.search-box:focus {
+  outline: none;
+  border-color: var(--beige-accent);
+}
+.hidden { display: none !important; }
+
+@media (max-width: 600px) {
+  body { padding: 1rem 0.75rem; }
+  header h1 { font-size: 1.4rem; }
+  .card-header { padding: 1rem; }
+  .card-body { padding: 1rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>澎湖縣長候選人政見</h1>
+  <p>2026 澎湖縣選舉 · 共 6 位候選人 · 投票日：2026年11月28日</p>
+</header>
+
+<div class="info-banner">
+  <strong>說明：</strong>本頁彙整各候選人公開政見，來源優先標記為候選人官方社群媒體（Facebook），其次為主流媒體報導。點擊候選人卡片可展開詳細政見。所有來源均附連結，請自行查證。
+</div>
+
+<input type="text" class="search-box" id="searchBox" placeholder="搜尋候選人姓名或政見內容...">
+
+<div id="candidates">
+
+<!-- 吳淑瑾 -->
+<div class="candidate-card" data-name="吳淑瑾 民進黨 醫療 機票 三節禮金 縣民卡 澎科大 航空 國安 世代平權" data-content="醫療 機票 三節禮金 縣民卡 澎科大 航空 國安 世代平權">
+  <div class="card-header" onclick="toggleCard(this)">
+    <span class="party-badge party-dpp">民進黨</span>
+    <h2>吳淑瑾</h2>
+    <span class="ticket-number">4號</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <div class="tagline">
+      <strong>參選主軸：</strong>代夫出征，延續執政。陳光復因意外無法參選，由妻子吳淑瑾接棒，主打「世代平權，永續發展」。
+    </div>
+    <div class="policy-section">
+      <h3>主要政見</h3>
+      <div class="policy-item">
+        每年投入一億元建立醫療基金，改善離島醫療與醫護待遇
+        <div class="source">
+          <span class="social-media-tag"><span class="fb-icon">f</span> Facebook</span>
+          <span class="source-tag">官方社群</span>
+          <a href="https://www.facebook.com/wushuchin.penghu/" target="_blank" rel="noopener">查看來源</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        三節禮金每年 18,000 元，敬老縣民卡每年 12,000 元
+        <div class="source">
+          <span class="social-media-tag"><span class="fb-icon">f</span> Facebook</span>
+          <span class="source-tag">官方社群</span>
+          <a href="https://www.facebook.com/groups/2504517542962730/permalink/28514330674888061/" target="_blank" rel="noopener">查看來源</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        機票 3.5 折優惠年齡從 12 歲延長至 18 歲
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://news.ltn.com.tw/news/politics/breakingnews/5524112" target="_blank" rel="noopener">自由時報</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        就讀澎湖科大免學費
+        <div class="source">
+          <span class="social-media-tag"><span class="fb-icon">f</span> Facebook</span>
+          <span class="source-tag">官方社群</span>
+          <a href="https://www.facebook.com/groups/2504517542962730/permalink/28514330674888061/" target="_blank" rel="noopener">查看來源</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        買國際機票附搭澎湖國內線機票，讓長輩揪甘心
+        <div class="source">
+          <span class="social-media-tag"><span class="fb-icon">f</span> Facebook</span>
+          <span class="source-tag">官方社群</span>
+          <a href="https://www.facebook.com/groups/2504517542962730/permalink/28514330674888061/" target="_blank" rel="noopener">查看來源</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        長者全年 3 萬元自在樂活政見
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://news.ltn.com.tw/news/politics/breakingnews/5536785" target="_blank" rel="noopener">自由時報</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        促成第三家航空公司，穩定國際航線與觀光外部市場
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://www.moredetailnews.com/%e6%96%b0%e8%81%9e/%e6%94%bf%e6%b2%bb/2026%e6%be%8e%e6%b9%96%e7%b8%a3%e9%95%b7%e5%80%99%e9%81%b8%e4%ba%ba%e5%90%b3%e6%b7%91%e7%91%be%e4%bb%8b%e7%b4%b9%ef%bc%9a%e4%bb%a3%e5%a4%ab%e5%87%ba%e5%be%81%e8%88%87%e5%bb%b6%e7%ba%8c%e5%9f%b7%2f" target="_blank" rel="noopener">讀點 ReadMore</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 陳振中 -->
+<div class="candidate-card" data-name="陳振中 國民黨 十大政見 垃圾淨零 醫療 交通 觀光 養育 青年 安居 海洋 文化 外籍看護 南海之星 機票補貼 媽祖" data-content="十大政見 垃圾淨零 醫療 交通 觀光 養育 青年 安居 海洋 文化 外籍看護 南海之星 機票補貼 媽祖 綠色變藍天">
+  <div class="card-header" onclick="toggleCard(this)">
+    <span class="party-badge party-kmt">國民黨</span>
+    <h2>陳振中</h2>
+    <span class="ticket-number">5號</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <div class="tagline">
+      <strong>參選主軸：</strong>「澎湖ㄟ代誌阿中來打拼」，以 30 年基層行政經驗出發，提出十大施政方針，喊出「綠地變藍天」。
+    </div>
+    <div class="policy-section">
+      <h3>十大施政方針</h3>
+      <div class="policy-item">
+        <strong>1. 完善垃圾淨零：</strong>引進日本高溫高壓氣化技術，處理澎湖廢棄物
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://www.moredetailnews.com/%e6%96%b0%e8%81%9e/%e6%94%bf%e6%b2%bb/2026%e6%be%8e%e6%b9%96%e7%b8%a3%e9%95%b7%e5%80%99%e9%81%b8%e4%ba%ba%e9%99%b3%e6%8c%af%e4%b8%ad%e4%bb%8b%e7%b4%b9%ef%bc%9a30%e5%b9%b4%e5%9f%ba%e5%b1%a4%e8%80%81%e5%b0%87%e5%a6%82%e4%bd%95%e6%94%b9%2f" target="_blank" rel="noopener">讀點 ReadMore</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>2. 提升醫療救護：</strong>醫護每月 5,000 元留任津貼、公有住宅租屋補助、後送流程優化（降落即進手術室目標）
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://www.moredetailnews.com/%e6%96%b0%e8%81%9e/%e6%94%bf%e6%b2%bb/2026%e6%be%8e%e6%b9%96%e7%b8%a3%e9%95%b7%e5%80%99%e9%81%b8%e4%ba%ba%e9%99%b3%e6%8c%af%e4%b8%ad%e4%bb%8b%e7%b4%b9%ef%bc%9a30%e5%b9%b4%e5%9f%ba%e5%b1%a4%e8%80%81%e5%b0%87%e5%a6%82%e4%bd%95%e6%94%b9%2f" target="_blank" rel="noopener">讀點 ReadMore</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>3. 外籍看護每月一萬元補助：</strong>依法聘僱外籍看護家庭每戶每月補助 1 萬元
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://www.moredetailnews.com/%e6%96%b0%e8%81%9e/%e6%94%bf%e6%b2%bb/2026%e6%be%8e%e6%b9%96%e7%b8%a3%e9%95%b7%e5%80%99%e9%81%b8%e4%ba%ba%e9%99%b3%e6%8c%af%e4%b8%ad%e4%bb%8b%e7%b4%b9%ef%bc%9a30%e5%b9%b4%e5%9f%ba%e5%b1%a4%e8%80%81%e5%b0%87%e5%a6%82%e4%bd%95%e6%94%b9%2f" target="_blank" rel="noopener">讀點 ReadMore</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>4. 優化交通運輸：</strong>「回家不應該靠運氣」，離島居民機票補貼比例從 3 成提高至 5 成，引進第三家航空公司
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://www.moredetailnews.com/%e6%96%b0%e8%81%9e/%e6%94%bf%e6%b2%bb/2026%e6%be%8e%e6%b9%96%e7%b8%a3%e9%95%b7%e5%80%99%e9%81%b8%e4%ba%ba%e9%99%b3%e6%8c%af%e4%b8%ad%e4%bb%8b%e7%b4%b9%ef%bc%9a30%e5%b9%b4%e5%9f%ba%e5%b1%a4%e8%80%81%e5%b0%87%e5%a6%82%e4%bd%95%e6%94%b9%2f" target="_blank" rel="noopener">讀點 ReadMore</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>5. 島際交通升級：</strong>籌備「南海之星四號」，加速改善偏遠離島交通（望安、七美）
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://www.moredetailnews.com/%e6%96%b0%e8%81%9e/%e6%94%bf%e6%b2%bb/2026%e6%be%8e%e6%b9%96%e7%b8%a3%e9%95%b7%e5%80%99%e9%81%b8%e4%ba%ba%e9%99%b3%e6%8c%af%e4%b8%ad%e4%bb%8b%e7%b4%b9%ef%bc%9a30%e5%b9%b4%e5%9f%ba%e5%b1%a4%e8%80%81%e5%b0%87%e5%a6%82%e4%bd%95%e6%94%b9%2f" target="_blank" rel="noopener">讀點 ReadMore</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>6. 翻轉四季觀光：</strong>推動媽祖文化節、硬體升級，從人潮數字轉向深度體驗經濟
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://www.moredetailnews.com/%e6%96%b0%e8%81%9e/%e6%94%bf%e6%b2%bb/2026%e6%be%8e%e6%b9%96%e7%b8%a3%e9%95%b7%e5%80%99%e9%81%b8%e4%ba%ba%e9%99%b3%e6%8c%af%e4%b8%ad%e4%bb%8b%e7%b4%b9%ef%bc%9a30%e5%b9%b4%e5%9f%ba%e5%b1%a4%e8%80%81%e5%b0%87%e5%a6%82%e4%bd%95%e6%94%b9%2f" target="_blank" rel="noopener">讀點 ReadMore</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>7. 全齡養育補助：</strong>公立幼兒園餐食與點心全額免費，閒置教室轉型托嬰中心
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://www.moredetailnews.com/%e6%96%b0%e8%81%9e/%e6%94%bf%e6%b2%bb/2026%e6%be%8e%e6%b9%96%e7%b8%a3%e9%95%b7%e5%80%99%e9%81%b8%e4%ba%ba%e9%99%b3%e6%8c%af%e4%b8%ad%e4%bb%8b%e7%b4%b9%ef%bc%9a30%e5%b9%b4%e5%9f%ba%e5%b1%a4%e8%80%81%e5%b0%87%e5%a6%82%e4%bd%95%e6%94%b9%2f" target="_blank" rel="noopener">讀點 ReadMore</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>8. 點亮青年返鄉：</strong>打造創業基地，整合行銷資源，協助青年產品銷往國際
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://www.moredetailnews.com/%e6%96%b0%e8%81%9e/%e6%94%bf%e6%b2%bb/2026%e6%be%8e%e6%b9%96%e7%b8%a3%e9%95%b7%e5%80%99%e9%81%b8%e4%ba%ba%e9%99%b3%e6%8c%af%e4%b8%ad%e4%bb%8b%e7%b4%b9%ef%bc%9a30%e5%b9%b4%e5%9f%ba%e5%b1%a4%e8%80%81%e5%b0%87%e5%a6%82%e4%bd%95%e6%94%b9%2f" target="_blank" rel="noopener">讀點 ReadMore</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>9. 築構幸福安居：</strong>建設「只租不賣」公共住宅，推動青銀共居概念
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://www.moredetailnews.com/%e6%96%b0%e8%81%9e/%e6%94%bf%e6%b2%bb/2026%e6%be%8e%e6%b9%96%e7%b8%a3%e9%95%b7%e5%80%99%e9%81%b8%e4%ba%ba%e9%99%b3%e6%8c%af%e4%b8%ad%e4%bb%8b%e7%b4%b9%ef%bc%9a30%e5%b9%b4%e5%9f%ba%e5%b1%a4%e8%80%81%e5%b0%87%e5%a6%82%e4%bd%95%e6%94%b9%2f" target="_blank" rel="noopener">讀點 ReadMore</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>10. 永續海洋與農漁轉型：</strong>AI 影像辨識與水下無人機建立廢棄物地圖，精準清除海洋覆網
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://www.moredetailnews.com/%e6%96%b0%e8%81%9e/%e6%94%bf%e6%b2%bb/2026%e6%be%8e%e6%b9%96%e7%b8%a3%e9%95%b7%e5%80%99%e9%81%b8%e4%ba%ba%e9%99%b3%e6%8c%af%e4%b8%ad%e4%bb%8b%e7%b4%b9%ef%bc%9a30%e5%b9%b4%e5%9f%ba%e5%b1%a4%e8%80%81%e5%b0%87%e5%a6%82%e4%bd%95%e6%94%b9%2f" target="_blank" rel="noopener">讀點 ReadMore</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 葉竹林 -->
+<div class="candidate-card" data-name="葉竹林 無黨籍 九大致政見 經濟振興 消費券 房屋稅 地價稅 焚化爐 風車 經濟年 振興禮金 10000 敬老 醫療 離島 漁業 環保 青年 海洋 軍公教" data-content="九大致政見 經濟振興 消費券 房屋稅 地價稅 焚化爐 風車 經濟年 振興禮金 敬老 醫療 離島 漁業 環保 青年 海洋 軍公教">
+  <div class="card-header" onclick="toggleCard(this)">
+    <span class="party-badge party-independent">無黨籍</span>
+    <h2>葉竹林</h2>
+    <span class="ticket-number">3號</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <div class="tagline">
+      <strong>參選主軸：</strong>「澎湖2026-扛起澎湖・打開新局」，定位「平民百姓對抗權貴與財團」，前馬公市長，9 大政見出征。
+    </div>
+    <div class="policy-section">
+      <h3>九大致政見</h3>
+      <div class="policy-item">
+        <strong>1. 全民共享・振興經濟：</strong>每位縣民普發 10,000 元經濟振興禮金，明年訂為「經濟年」
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://news.ltn.com.tw/news/politics/breakingnews/5563070" target="_blank" rel="noopener">自由時報</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>2. 在地振興消費券一萬元：</strong>澎湖在地振興消費券每張一萬元，由縣府負擔
+        <div class="source">
+          <span class="social-media-tag"><span class="fb-icon">f</span> Facebook</span>
+          <span class="source-tag">官方社群</span>
+          <a href="https://www.facebook.com/YEHCHULINinPENGHU/posts/1705173708280367/" target="_blank" rel="noopener">查看來源</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>3. 縣府負擔房屋稅與地價稅：</strong>由縣府負擔鄉親房屋稅、地價稅，減輕稅負
+        <div class="source">
+          <span class="social-media-tag"><span class="fb-icon">f</span> Facebook</span>
+          <span class="source-tag">官方粉絲團</span>
+          <a href="https://www.facebook.com/YEHCHULINinPENGHU/posts/1705173708280367/" target="_blank" rel="noopener">查看來源</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>4. 敬老扶弱・溫暖加倍</strong>
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://news.ltn.com.tw/news/politics/breakingnews/5563070" target="_blank" rel="noopener">自由時報</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>5. 醫療急救・救命優先</strong>
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://news.ltn.com.tw/news/politics/breakingnews/5563070" target="_blank" rel="noopener">自由時報</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>6. 離島平權・交通升級</strong>
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://news.ltn.com.tw/news/politics/breakingnews/5563070" target="_blank" rel="noopener">自由時報</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>7. 漁業升級・四季觀光</strong>
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://news.ltn.com.tw/news/politics/breakingnews/5563070" target="_blank" rel="noopener">自由時報</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>8. 環保自主・垃圾在地處理：</strong>任內完成設置焚化爐，反對風車設立
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://news.ltn.com.tw/news/politics/breakingnews/5563070" target="_blank" rel="noopener">自由時報</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>9. 青年返鄉・安居樂業 / 海洋復育・漁業永續 / 軍公教權益・公平保障</strong>
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://news.ltn.com.tw/news/politics/breakingnews/5563070" target="_blank" rel="noopener">自由時報</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 周倪安 -->
+<div class="candidate-card" data-name="周倪安 台聯 農業 荒地代管 農經學院 漁業 守護澎湖 翻轉 改革 澎湖科大 台大澎湖分校" data-content="農業 荒地代管 農經學院 漁業 守護澎湖 翻轉 改革 澎湖科大 台大澎湖分校">
+  <div class="card-header" onclick="toggleCard(this)">
+    <span class="party-badge party-ttp">台聯黨</span>
+    <h2>周倪安</h2>
+    <span class="ticket-number">2號</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <div class="tagline">
+      <strong>參選主軸：</strong>「翻轉大澎湖、改革沒包袱」，台聯黨主席，以「台聯守護台灣、保護澎湖」為口號，強調守護澎湖漁業。
+    </div>
+    <div class="policy-section">
+      <h3>主要政見</h3>
+      <div class="policy-item">
+        <strong>荒地逕行代管委託經營辦法：</strong>讓廢耕農地復耕，鼓勵更多人加入農業
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://www.cna.com.tw/news/aloc/202611100294.aspx" target="_blank" rel="noopener">中央社</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>爭取澎湖科大成為台大澎湖分校：</strong>增設「農業經濟學院」，培育農業人才
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://www.cna.com.tw/news/aloc/202611100294.aspx" target="_blank" rel="noopener">中央社</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>守護澎湖漁業：</strong>漁業是澎湖重要經濟命脈，以台聯力量推動漁業保護
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://www.cna.com.tw/news/aipl/202611010073.aspx" target="_blank" rel="noopener">中央社</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>翻轉大澎湖、改革沒包袱：</strong>競總成立大會宣示改革決心
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://news.ltn.com.tw/news/politics/breakingnews/5625812" target="_blank" rel="noopener">自由時報</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 許智富 -->
+<div class="candidate-card" data-name="許智富 無黨籍 路平專案 道路 辯論 政見發表 副縣長 民眾黨" data-content="路平專案 道路 辯論 政見發表 副縣長 民眾黨">
+  <div class="card-header" onclick="toggleCard(this)">
+    <span class="party-badge party-npp">無黨籍</span>
+    <h2>許智富</h2>
+    <span class="ticket-number">1號</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <div class="tagline">
+      <strong>參選主軸：</strong>前澎湖縣副縣長，具建設處長、民政處長行政經歷，2022 年曾代表台灣民眾黨參選縣議員，2026 年以無黨籍身分參選縣長。
+    </div>
+    <div class="policy-section">
+      <h3>主要政見</h3>
+      <div class="policy-item">
+        <strong>路平專案：</strong>針對澎湖道路規劃提出系統性解決方案，要求道路挖掘施工透明化管理
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://news.ltn.com.tw/news/politics/breakingnews/5481306" target="_blank" rel="noopener">自由時報</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>倡議公辦政見發表會改採辯論形式：</strong>認為縣長選舉除了讓候選人提出政見，更應透過公開、理性的政策對話，讓選民充分了解各候選人治理理念
+        <div class="source">
+          <span class="social-media-tag"><span class="fb-icon">f</span> Facebook</span>
+          <span class="source-tag">社群媒體</span>
+          <a href="https://www.facebook.com/myPenghu/posts/1524334506389247/" target="_blank" rel="noopener">查看來源</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>下辯論戰帖：</strong>向所有參選縣長的候選人發出公開邀請，參與電視辯論
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://news.ltn.com.tw/news/politics/breakingnews/5557614" target="_blank" rel="noopener">自由時報</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 陳盡川 -->
+<div class="candidate-card" data-name="陳盡川 牛哥 無黨籍 海洋 漁業 鯨豚 蝠魟 魚球 鹹水煙 銀合歡 觀光 志工" data-content="海洋 漁業 鯨豚 蝠魟 魚球 鹹水煙 銀合歡 觀光 志工 牛哥">
+  <div class="card-header" onclick="toggleCard(this)">
+    <span class="party-badge party-teal">無黨籍</span>
+    <h2>陳盡川（牛哥）</h2>
+    <span class="ticket-number">6號</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <div class="tagline">
+      <strong>參選主軸：</strong>澎湖著名海洋保育志工，長期致力於澎湖海陸生態環境保護，以「海、山、路、觀光」施政願景參選。
+    </div>
+    <div class="policy-section">
+      <h3>政見</h3>
+      <div class="policy-item">
+        <strong>一、保護富裕澎湖海：</strong>恢復 4-50 年前富饒海洋，處處魚球強強滾，鯨豚蝠魟伴人遊，漁業、觀光兩得益，永續海洋藏富子孫
+        <div class="source">
+          <span class="social-media-tag"><span class="fb-icon">f</span> Facebook</span>
+          <span class="source-tag">官方社群</span>
+          <a href="https://www.facebook.com/chen.jin.chuan.441889/posts/4536071869942401/" target="_blank" rel="noopener">查看來源</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>二、深耕美化澎湖山：</strong>活化土地創造鹹水煙特色農業，綠美化田園風光，相佐觀光產值，銀合歡全面性資源化開發
+        <div class="source">
+          <span class="social-media-tag"><span class="fb-icon">f</span> Facebook</span>
+          <span class="source-tag">官方社群</span>
+          <a href="https://www.facebook.com/chen.jin.chuan.441889/posts/4536071869942401/" target="_blank" rel="noopener">查看來源</a>
+        </div>
+      </div>
+      <div class="policy-item">
+        <strong>三、維護澎湖路與觀光願景：</strong>海、山、路、觀光及治縣委員會
+        <div class="source">
+          <span class="source-tag">媒體</span>
+          <a href="https://news.ltn.com.tw/news/politics/breakingnews/5298832" target="_blank" rel="noopener">自由時報</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /candidates -->
+
+<div class="sources-section">
+  <h2>資料來源一覽</h2>
+  <ul class="source-list">
+    <li>
+      <span class="social-media-tag"><span class="fb-icon">f</span> FB</span>
+      <span>葉竹林官方粉絲團</span>
+      <a href="https://www.facebook.com/YEHCHULINinPENGHU/" target="_blank" rel="noopener">facebook.com/YEHCHULINinPENGHU</a>
+    </li>
+    <li>
+      <span class="social-media-tag"><span class="fb-icon">f</span> FB</span>
+      <span>吳淑瑾官方粉絲團</span>
+      <a href="https://www.facebook.com/wushuchin.penghu/" target="_blank" rel="noopener">facebook.com/wushuchin.penghu</a>
+    </li>
+    <li>
+      <span class="social-media-tag"><span class="fb-icon">f</span> FB</span>
+      <span>吳淑瑾競選社團</span>
+      <a href="https://www.facebook.com/groups/2504517542962730/permalink/28514330674888061/" target="_blank" rel="noopener">facebook.com/groups/2504517542962730</a>
+    </li>
+    <li>
+      <span class="social-media-tag"><span class="fb-icon">f</span> FB</span>
+      <span>陳盡川個人帳號</span>
+      <a href="https://www.facebook.com/chen.jin.chuan.441889/" target="_blank" rel="noopener">facebook.com/chen.jin.chuan.441889</a>
+    </li>
+    <li>
+      <span class="social-media-tag"><span class="fb-icon">f</span> FB</span>
+      <span>我是澎湖人（許智富相關）</span>
+      <a href="https://www.facebook.com/myPenghu/posts/1524334506389247/" target="_blank" rel="noopener">facebook.com/myPenghu</a>
+    </li>
+    <li>
+      <span class="source-tag">媒體</span>
+      <span>自由時報 - 葉竹林登記報導</span>
+      <a href="https://news.ltn.com.tw/news/politics/breakingnews/5563070" target="_blank" rel="noopener">ltn.com.tw</a>
+    </li>
+    <li>
+      <span class="source-tag">媒體</span>
+      <span>自由時報 - 許智富路平專案</span>
+      <a href="https://news.ltn.com.tw/news/politics/breakingnews/5481306" target="_blank" rel="noopener">ltn.com.tw</a>
+    </li>
+    <li>
+      <span class="source-tag">媒體</span>
+      <span>自由時報 - 陳盡川參選報導</span>
+      <a href="https://news.ltn.com.tw/news/politics/breakingnews/5298832" target="_blank" rel="noopener">ltn.com.tw</a>
+    </li>
+    <li>
+      <span class="source-tag">媒體</span>
+      <span>中央社 - 周倪安農業政見</span>
+      <a href="https://www.cna.com.tw/news/aloc/202611100294.aspx" target="_blank" rel="noopener">cna.com.tw</a>
+    </li>
+    <li>
+      <span class="source-tag">媒體</span>
+      <span>中央社 - 周倪安競總成立</span>
+      <a href="https://www.cna.com.tw/news/aipl/202611010073.aspx" target="_blank" rel="noopener">cna.com.tw</a>
+    </li>
+    <li>
+      <span class="source-tag">媒體</span>
+      <span>讀點 ReadMore - 陳振中介紹</span>
+      <a href="https://www.moredetailnews.com/%e6%96%b0%e8%81%9e/%e6%94%bf%e6%b2%bb/2026%e6%be%8e%e6%b9%96%e7%b8%a3%e9%95%b7%e5%80%99%e9%81%b8%e4%ba%ba%e9%99%b3%e6%8c%af%e4%b8%ad%e4%bb%8b%e7%b4%b9%ef%bc%9a30%e5%b9%b4%e5%9f%ba%e5%b1%a4%e8%80%81%e5%b0%87%e5%a6%82%e4%bd%95%e6%94%b9%2f" target="_blank" rel="noopener">moredetailnews.com</a>
+    </li>
+    <li>
+      <span class="source-tag">媒體</span>
+      <span>讀點 ReadMore - 吳淑瑾介紹</span>
+      <a href="https://www.moredetailnews.com/%e6%96%b0%e8%81%9e/%e6%94%bf%e6%b2%bb/2026%e6%be%8e%e6%b9%96%e7%b8%a3%e9%95%b7%e5%80%99%e9%81%b8%e4%ba%ba%e5%90%b3%e6%b7%91%e7%91%be%e4%bb%8b%e7%b4%b9%ef%bc%9a%e4%bb%a3%e5%a4%ab%e5%87%ba%e5%be%81%e8%88%87%e5%bb%b6%e7%ba%8c%e5%9f%b7%2f" target="_blank" rel="noopener">moredetailnews.com</a>
+    </li>
+    <li>
+      <span class="source-tag">追蹤</span>
+      <span>選舉政見追蹤 - 澎湖縣長</span>
+      <a href="https://www.twpromisetracker.org/elections/2026%E5%B9%B4%E6%BE%8E%E6%B9%96%E7%B8%A3%E9%95%B7%E9%81%B8%E8%88%89" target="_blank" rel="noopener">twpromisetracker.org</a>
+    </li>
+    <li>
+      <span class="source-tag">追蹤</span>
+      <span>留白投票所 - 澎湖縣長政見對照</span>
+      <a href="https://blindvote.app/sources/penghu" target="_blank" rel="noopener">blindvote.app</a>
+    </li>
+  </ul>
+</div>
+
+<footer>
+  資料蒐集日期：2026 年 11 月 14 日 · 本頁為非官方資訊彙整，正式政見以各候選人競選總部公布為準<br>
+  請自行查證所有來源連結
+</footer>
+</div>
+
+<script>
+function toggleCard(header) {
+  const card = header.closest('.candidate-card');
+  card.classList.toggle('open');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const searchBox = document.getElementById('searchBox');
+  const cards = document.querySelectorAll('.candidate-card');
+
+  searchBox.addEventListener('input', function() {
+    const query = this.value.trim().toLowerCase();
+    cards.forEach(card => {
+      if (query === '') {
+        card.classList.remove('hidden');
+        return;
+      }
+      const nameMatch = (card.dataset.name || '').toLowerCase().includes(query);
+      const contentMatch = card.textContent.toLowerCase().includes(query);
+      card.classList.toggle('hidden', !(nameMatch || contentMatch));
+      if (nameMatch || contentMatch) card.classList.add('open');
+    });
+  });
+
+  // Open first card by default
+  const firstCard = document.querySelector('.candidate-card');
+  if (firstCard) firstCard.classList.add('open');
+});
+</script>
+</body>
+</html>

@@ -4,11 +4,23 @@
 
 本專案以**資料正確性、來源可追溯性與可維護性**為優先，不追求擷取速度，也不自行補寫來源沒有的內容。
 
-- 主要來源：[台灣選舉懶人包・澎湖縣](https://taiwanpoliticalzoo.com/other-cities/penghu/)
-- 資料擷取日：2026-11-08
-- 來源頁標示最後更新：2026-11-02
+- 主要來源：[台灣選舉懶人包・澎湖縣](https://taiwanpoliticalzoo.com/other-cities/penghu/)、各候選人官方 Facebook、主流媒體報導
+- 資料擷取日：2026-11-14
 - 候選人數：6 位
 - 已收錄政見：23 項（皆為來源網站的摘要，非完整政見全文）
+
+## 網頁版
+
+本 repo 根目錄的 `index.html` 為**米色主題**互動式政見網頁，可在 GitHub Pages 直接瀏覽：
+
+> 啟用方式：GitHub 倉庫 → Settings → Pages → Source: main branch → Save  
+> 網址：`https://QiuGavintw.github.io/penghu-magistrate-candidates/`
+
+網頁功能：
+- 6 位候選人卡片式展示，點擊展開詳細政見
+- 搜尋功能（輸入姓名或關鍵字）
+- 每項政見標示來源：候選人官方 Facebook（藍色標籤）或媒體報導
+- 底部完整來源清單，可逐筆查證
 
 > **非官方專案。** 本資料集不是中央選舉委員會或任何政黨的官方出版品。選舉事務請以[中央選舉委員會](https://www.cec.gov.tw/)公告為準。
 
@@ -52,7 +64,9 @@
 
 ```text
 penghu-magistrate-candidates/
-├── candidates.json                 # 主要資料集（結構化、含完整來源）
+├── index.html                    # 米色主題互動式政見網頁（GitHub Pages 入口）
+├── .nojekyll                     # GitHub Pages 設定
+├── candidates.json               # 主要資料集（結構化、含完整來源）
 ├── candidates.csv                  # 一位候選人一列（UTF-8 with BOM，Excel 可直接開啟）
 ├── platforms.csv                   # 一項政見一列，方便分析
 ├── sources.md                      # 逐筆來源與查證紀錄（由程式產生）
