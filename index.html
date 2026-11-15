@@ -202,6 +202,97 @@ header p {
   padding: 1.5rem;
   margin-top: 2rem;
 }
+.similarity-section {
+  background: var(--beige-card);
+  border: 1px solid var(--beige-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+.similarity-section h2 {
+  font-size: 1rem;
+  color: var(--beige-accent);
+  margin-bottom: 0.5rem;
+}
+.sim-desc {
+  font-size: 0.85rem;
+  color: var(--beige-muted);
+  margin-bottom: 1.25rem;
+}
+.sim-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.sim-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  text-align: center;
+}
+.sim-table th {
+  background: var(--beige-highlight);
+  color: var(--beige-accent);
+  font-weight: 700;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--beige-border);
+  min-width: 4rem;
+}
+.sim-table td {
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--beige-border);
+  font-size: 0.8rem;
+}
+.sim-table .diag {
+  background: var(--beige-highlight);
+  font-weight: 700;
+  color: var(--beige-accent);
+}
+.sim-cell { transition: background 0.2s; }
+.sim-pair-section h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--beige-accent);
+  margin-bottom: 0.75rem;
+}
+.sim-pair {
+  background: #F9F6F0;
+  border: 1px solid var(--beige-border);
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.88rem;
+}
+.sim-pair-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.sim-pair-sim {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: white;
+  background: var(--beige-accent);
+  padding: 0.15rem 0.6rem;
+  border-radius: 20px;
+}
+.sim-pair-candidates {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.sim-pair-policy {
+  color: var(--beige-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+.sim-pair-policy strong { color: var(--beige-text); }
+.sim-pair-arrow {
+  color: var(--beige-accent);
+  font-size: 0.9rem;
+  margin: 0.25rem 0;
+}
 .sources-section h2 {
   font-size: 1rem;
   color: var(--beige-accent);
@@ -645,6 +736,21 @@ footer {
 
 </div><!-- /candidates -->
 
+<div class="similarity-section">
+  <h2>政見相似度分析</h2>
+  <p class="sim-desc">以 TF-IDF 詞向量（bigram）計算各候選人整體政見的重疊程度，數值越高代表兩位候選人的政策語言越接近。另附跨候選人政見配對，找出最相似的個別政策組合。</p>
+
+  <h3 style="font-size:0.9rem;font-weight:700;color:var(--beige-accent);margin-bottom:0.75rem;">候選人整體相似度矩陣</h3>
+  <div class="sim-table-wrap">
+    <table class="sim-table" id="simMatrix"></table>
+  </div>
+
+  <div class="sim-pair-section">
+    <h3>最相似的跨候選人政見配對（Top 12）</h3>
+    <div id="simPairs"></div>
+  </div>
+</div>
+
 <div class="sources-section">
   <h2>資料來源一覽</h2>
   <ul class="source-list">
@@ -733,7 +839,93 @@ function toggleCard(header) {
   card.classList.toggle('open');
 }
 
+const simData = {
+  labels: ["許智富(1)", "周倪安(2)", "葉竹林(3)", "吳淑瑾(4)", "陳振中(5)", "陳盡川(6)"],
+  matrix: [
+    [1.0000, 0.0560, 0.0432, 0.0570, 0.0460, 0.0616],
+    [0.0560, 1.0000, 0.1266, 0.0850, 0.0986, 0.1455],
+    [0.0432, 0.1266, 1.0000, 0.1407, 0.1883, 0.1018],
+    [0.0570, 0.0850, 0.1407, 1.0000, 0.2041, 0.0734],
+    [0.0460, 0.0986, 0.1883, 0.2041, 1.0000, 0.1249],
+    [0.0616, 0.1455, 0.1018, 0.0734, 0.1249, 1.0000]
+  ],
+  pairs: [
+    { sim: 0.4061, a: "葉竹林(3)", aPolicy: "離島平權・交通升級", b: "陳振中(5)", bPolicy: "島際交通升級：籌備南海之星四號，加速改善偏遠離島交通" },
+    { sim: 0.2733, a: "葉竹林(3)", aPolicy: "漁業升級・四季觀光", b: "陳振中(5)", bPolicy: "翻轉四季觀光：推動媽祖文化節、硬體升級，從人潮數字轉向深度體驗經濟" },
+    { sim: 0.2484, a: "周倪安(2)", aPolicy: "爭取澎湖科大成為台大澎湖分校：增設農業經濟學院", b: "吳淑瑾(4)", bPolicy: "就讀澎湖科大免學費" },
+    { sim: 0.2441, a: "吳淑瑾(4)", aPolicy: "促成第三家航空公司，穩定國際航線與觀光外部市場", b: "陳振中(5)", bPolicy: "優化交通運輸：離島居民機票補貼從3成提高至5成，引進第三家航空公司" },
+    { sim: 0.2012, a: "吳淑瑾(4)", aPolicy: "每年投入一億元建立醫療基金，改善離島醫療與醫護待遇", b: "陳振中(5)", bPolicy: "提升醫療救護：醫護每月5,000元留任津貼、公有住宅租屋補助" },
+    { sim: 0.1967, a: "周倪安(2)", aPolicy: "守護澎湖漁業：漁業是澎湖重要經濟命脈", b: "葉竹林(3)", bPolicy: "漁業升級・四季觀光" },
+    { sim: 0.1924, a: "葉竹林(3)", aPolicy: "全民共享・振興經濟：普發10,000元經濟振興禮金", b: "吳淑瑾(4)", bPolicy: "三節禮金每年18,000元，敬老縣民卡每年12,000元" },
+    { sim: 0.1867, a: "葉竹林(3)", aPolicy: "醫療急救・救命優先", b: "吳淑瑾(4)", bPolicy: "每年投入一億元建立醫療基金，改善離島醫療與醫護待遇" },
+    { sim: 0.1824, a: "葉竹林(3)", aPolicy: "醫療急救・救命優先", b: "陳振中(5)", bPolicy: "提升醫療救護：醫護每月5,000元留任津貼、後送流程優化" },
+    { sim: 0.1770, a: "葉竹林(3)", aPolicy: "青年返鄉・海洋復育・軍公教權益", b: "陳盡川(6)", bPolicy: "保護富裕澎湖海：恢復富饒海洋，鯨豚蝠魟伴人遊，永續海洋藏富子孫" },
+    { sim: 0.1664, a: "陳振中(5)", aPolicy: "永續海洋與農漁轉型：AI影像辨識與水下無人機清除海洋覆網", b: "陳盡川(6)", bPolicy: "保護富裕澎湖海：恢復富饒海洋，永續海洋藏富子孫" },
+    { sim: 0.1643, a: "葉竹林(3)", aPolicy: "青年返鄉・安居樂業", b: "陳振中(5)", bPolicy: "點亮青年返鄉：打造創業基地，協助青年產品銷往國際" }
+  ]
+};
+
+function simColor(val) {
+  if (val >= 0.9) return '#B8956B';
+  if (val >= 0.5) return '#D4A574';
+  if (val >= 0.3) return '#E8C9A0';
+  if (val >= 0.15) return '#F0DCC0';
+  if (val >= 0.08) return '#F7EBD8';
+  return '#F5F0E8';
+}
+
+function simTextColor(val) {
+  if (val >= 0.5) return '#3A3228';
+  if (val >= 0.15) return '#7A7060';
+  return '#B0A898';
+}
+
+function renderSimMatrix() {
+  const table = document.getElementById('simMatrix');
+  const labels = simData.labels;
+  const matrix = simData.matrix;
+  let html = '<tr><th></th>';
+  labels.forEach(l => html += '<th>' + l + '</th>');
+  html += '</tr>';
+  matrix.forEach((row, i) => {
+    html += '<tr><th>' + labels[i] + '</th>';
+    row.forEach((val, j) => {
+      if (i === j) {
+        html += '<td class="diag">1.00</td>';
+      } else {
+        html += '<td class="sim-cell" style="background:' + simColor(val) + ';color:' + simTextColor(val) + '">' + val.toFixed(2) + '</td>';
+      }
+    });
+    html += '</tr>';
+  });
+  table.innerHTML = html;
+}
+
+function renderSimPairs() {
+  const container = document.getElementById('simPairs');
+  let html = '';
+  simData.pairs.forEach((p, idx) => {
+    html += '<div class="sim-pair">' +
+      '<div class="sim-pair-header">' +
+        '<span class="sim-pair-candidates">' + p.a + ' <span style="color:var(--beige-accent)">↔</span> ' + p.b + '</span>' +
+        '<span class="sim-pair-sim">相似度 ' + Math.round(p.sim * 100) + '%</span>' +
+      '</div>' +
+      '<div class="sim-pair-policy">' +
+        '<strong>' + p.a + '：</strong>' + p.aPolicy +
+      '</div>' +
+      '<div class="sim-pair-arrow">▼ 最接近</div>' +
+      '<div class="sim-pair-policy">' +
+        '<strong>' + p.b + '：</strong>' + p.bPolicy +
+      '</div>' +
+    '</div>';
+  });
+  container.innerHTML = html;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+  renderSimMatrix();
+  renderSimPairs();
+
   const searchBox = document.getElementById('searchBox');
   const cards = document.querySelectorAll('.candidate-card');
 
@@ -751,7 +943,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Open first card by default
   const firstCard = document.querySelector('.candidate-card');
   if (firstCard) firstCard.classList.add('open');
 });
