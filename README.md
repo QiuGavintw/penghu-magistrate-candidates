@@ -9,6 +9,49 @@
 - 候選人數：6 位
 - 已收錄政見：23 項（皆為來源網站的摘要，非完整政見全文）
 
+## 定期更新
+
+本專案包含每日自動刷新機制，在投票日（2026-11-28）前持續監測來源更新。
+
+### 自動執行（GitHub Actions）
+
+`.github/workflows/daily-refresh.yml` 每天 UTC 00:00（台北 08:00）自動執行：
+
+1. 檢查投票日是否已過，若已過則停止
+2. 擷取 [taiwanpoliticalzoo.com](https://taiwanpoliticalzoo.com/other-cities/penghu/) 最新內容
+3. 檢查 CEC 候選人登記彙總表頁面（若 CEC 發布新選舉公報，以選舉公報為最優先來源）
+4. 比對政見差異（新增 / 修改 / 刪除）
+5. 有變化時自動更新：
+   - `candidates.json` / `candidates.csv` / `platforms.csv`
+   - `okf/` 候選人文件與 `okf/log.md`
+   - `index.html` 相似度矩陣
+   - `git commit` + `push`（需 `GITHUB_TOKEN`）
+
+### 手動執行
+
+```powershell
+# 完整刷新（寫入檔案並 push，需 GITHUB_TOKEN 環境變數）
+python refresh.py
+
+# 只檢查有無變化，不寫入
+python refresh.py --dry-run
+
+# 只 commit 不 push
+python refresh.py --skip-push
+```
+
+### 本機 Windows 排程
+
+若不使用 GitHub Actions，可在 Windows 排程工作員（Task Scheduler）建立每日任務：
+
+```powershell
+# 以本機 Python 執行（需先 clone repo 到本機）
+cd C:\path\to\penghu-magistrate-candidates
+python refresh.py
+```
+
+> **選舉公報優先原則**：若 CEC 發布正式選舉公報，應以公報內容為最優先來源。目前 `check_cec_announcement()` 僅記錄檢查時間，PDF 內容未自動解析。收到新公報時請手動更新 `candidates.json` 中的號次、黨派等欄位，再執行 `python refresh.py` 同步到其他格式。
+
 ## 網頁版
 
 本 repo 根目錄的 `index.html` 為**米色主題**互動式政見網頁，可在 GitHub Pages 直接瀏覽：
