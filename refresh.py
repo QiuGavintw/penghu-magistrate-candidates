@@ -322,20 +322,28 @@ def git_commit_and_push(message: str) -> bool:
 
 
 def run_refresh(dry_run: bool = False) -> int:
-    """執行一次完整的刷新流程。"""
+    """執行一次完整的刷新流程。
+
+    來源優先順序：
+      1. 選舉公報（CEC PDF，手動更新）
+      2. 候選人官方 Facebook（fetch_fb.py）
+      3. 主流媒體報導（fetch_news.py）
+      4. 台灣選舉懶人包（scraper/ 現有流程）
+    """
+    import os
     print(f"=== 澎湖縣長政見刷新 {now_iso()} ===")
 
     if not is_before_election():
         print("投票日已過（2026-11-28），停止刷新。")
         return 0
 
-    print("1/5 讀取現有資料集...")
+    print("1/6 讀取現有資料集...")
     existing = load_existing_dataset()
     existing_platforms_by_name = {
         c["name"]: c.get("platforms", []) for c in existing.get("candidates", [])
     }
 
-    print("2/5 擷取來源網站最新內容...")
+    print("2/6 擷取來源網站（台灣選舉懶人包）最新內容...")
     try:
         new_index = fetch_latest_index()
         new_cards = new_index.get("candidates", [])
@@ -344,18 +352,68 @@ def run_refresh(dry_run: bool = False) -> int:
         print(f"   擷取來源網站失敗：{exc}")
         return 1
 
-    print("3/5 檢查 CEC 選舉公報...")
+    print("3/6 檢查 CEC 選舉公報...")
     cec_check = check_cec_announcement()
     if cec_check:
         print(f"   CEC 頁面檢查時間：{cec_check['checked_at']}")
         print(f"   注意：{cec_check['note']}")
-        print("   （若 CEC 發布新選舉公報，請手動更新 candidates.json 中的號次與黨派）")
+        print("   （若 CEC 發布新選舉公報，以選舉公報為最優先來源，請手動更新 candidates.json）")
 
-    print("4/5 比對政見差異...")
+    # --- 主要來源：候選人官方 Facebook ---
+    print("4/6 擷取候選人官方 Facebook 政見貼文...")
+    fb_changes: list[str] = []
+    try:
+        import importlib.util
+        import sys as _sys
+        spec = importlib.util.spec_from_file_location(
+            "fetch_fb", PROJECT_ROOT / "fetch_fb.py"
+        )
+        fetch_fb_mod = importlib.util.module_from_spec(spec)
+        _sys.modules["fetch_fb"] = fetch_fb_mod
+        spec.loader.exec_module(fetch_fb_mod)
+
+        fb_data = fetch_fb_mod.fetch_all()
+        for name, posts in fb_data.items():
+            if posts:
+                fb_changes.append(f"{name}：Facebook 新增 {len(posts)} 篇政見相關貼文")
+                print(f"   ⚡ {name}：FB {len(posts)} 篇政見貼文")
+            else:
+                print(f"   ✓ {name}：FB 無新貼文")
+
+        if not dry_run and fb_changes:
+            _write_fb_to_okf(fb_data)
+    except Exception as exc:
+        print(f"   Facebook 擷取失敗（非致命）：{exc}", file=sys.stderr)
+
+    # --- 次要來源：主流媒體新聞 ---
+    print("5/6 擷取主流媒體澎湖相關報導...")
+    news_changes: list[str] = []
+    try:
+        import importlib.util
+        import sys as _sys
+        spec = importlib.util.spec_from_file_location(
+            "fetch_news", PROJECT_ROOT / "fetch_news.py"
+        )
+        fetch_news_mod = importlib.util.module_from_spec(spec)
+        _sys.modules["fetch_news"] = fetch_news_mod
+        spec.loader.exec_module(fetch_news_mod)
+
+        news_data = fetch_news_mod.fetch_all()
+        total_news = len(news_data.get("articles", []))
+        print(f"   共 {total_news} 篇澎湖相關報導")
+
+        if not dry_run and total_news:
+            fetch_news_mod.write_cache(news_data, config.CACHE_DIR)
+            news_changes.append(f"新聞：新增 {total_news} 篇澎湖相關報導")
+    except Exception as exc:
+        print(f"   新聞擷取失敗（非致命）：{exc}", file=sys.stderr)
+
+    # --- 比對與寫入 ---
+    print("6/6 比對政見差異並更新...")
     all_changes: list[str] = []
     updated_okf_files: list[str] = []
 
-    # 重新擷取完整資料集
+    # 重新擷取完整資料集（含台灣選舉懶人包）
     from scraper.build import build_dataset, write_json, write_csv, write_platforms_csv
     new_dataset = build_dataset()
 
@@ -386,6 +444,10 @@ def run_refresh(dry_run: bool = False) -> int:
         write_platforms_csv(new_dataset)
         all_changes.append("更新 candidates.json / candidates.csv / platforms.csv")
 
+        # 合併 FB 與新聞變更
+        all_changes.extend(fb_changes)
+        all_changes.extend(news_changes)
+
         # 更新 OKF log
         if all_changes:
             update_okf_log(all_changes)
@@ -404,22 +466,64 @@ def run_refresh(dry_run: bool = False) -> int:
 
     if dry_run:
         print("\n[dry-run] 未寫入任何檔案。")
-        if all_changes:
-            print(f"[dry-run] 預警：有 {len(all_changes)} 項變更待寫入")
+        all_preview = all_changes + fb_changes + news_changes
+        if all_preview:
+            print(f"[dry-run] 預警：有 {len(all_preview)} 項變更待寫入")
         return 0
 
     if all_changes:
-        print(f"\n5/5 提交變更（共 {len(all_changes)} 項）...")
+        print(f"\n提交變更（共 {len(all_changes)} 項）...")
         commit_msg = (
             f"chore: 每日政見刷新 {datetime.now(TZ_TAIPEI).date().isoformat()}\n\n"
             + "\n".join(f"- {c}" for c in all_changes)
         )
         git_commit_and_push(commit_msg)
     else:
-        print("5/5 無變更，跳過 commit。")
+        print("無變更，跳過 commit。")
 
     print("\n=== 刷新完成 ===")
     return 0
+
+
+def _write_fb_to_okf(fb_data: dict[str, list[dict[str, Any]]]) -> None:
+    """將 FB 擷取結果寫入 okf/candidates/ 對應檔案。"""
+    for name, posts in fb_data.items():
+        if not posts:
+            continue
+        okf_file = PROJECT_ROOT / "okf" / "candidates" / (
+            {
+                "葉竹林": "ye-chu-lin.md",
+                "吳淑瑾": "wu-shu-jin.md",
+                "陳盡川": "chen-jin-chuan.md",
+            }.get(name, "")
+        )
+        if not okf_file.exists():
+            continue
+
+        content = okf_file.read_text(encoding="utf-8")
+        # 更新 generated.at
+        content = re.sub(
+            r'generated: \{ by: [^,]+, at: [^}]+\}',
+            f'generated: {{ by: process:refresh-fb, at: {now_iso()} }}',
+            content,
+        )
+
+        # 在「# 相似政見」之前插入 FB 來源區塊
+        marker = "\n# 相似政見"
+        fb_block = "\n## 官方 Facebook 來源\n\n"
+        for p in posts:
+            fb_block += (
+                f"* **{p['content'][:80]}...**\n"
+                f"  來源：[Facebook]({p['url']})\n"
+                f"  發布時間：{p.get('created_time', '未知')}\n"
+            )
+
+        if marker in content:
+            content = content.replace(marker, fb_block + marker, 1)
+        else:
+            content += fb_block
+
+        okf_file.write_text(content, encoding="utf-8")
 
 
 def main(argv: list[str] | None = None) -> int:

@@ -13,24 +13,34 @@
 
 本專案包含每日自動刷新機制，在投票日（2026-11-28）前持續監測來源更新。
 
+### 來源優先順序
+
+| 優先順序 | 來源 | 說明 | 模組 |
+|----------|------|------|------|
+| 1 | **選舉公報（CEC PDF）** | 最正式、最優先來源；CEC 發布新公報時以此為準 | `check_cec_announcement()`（手動更新 `candidates.json`） |
+| 2 | **候選人官方 Facebook** | 候選人第一手政見發表；葉竹林、吳淑瑾、陳盡川有官方 FB | `fetch_fb.py` |
+| 3 | **主流媒體報導** | 自由時報、中央社、NOWnews、新頭條等 | `fetch_news.py` |
+| 4 | **台灣選舉懶人包** | 現有 scraper/ 流程，結構化整理 | `scraper/` |
+
 ### 自動執行（GitHub Actions）
 
 `.github/workflows/daily-refresh.yml` 每天 UTC 00:00（台北 08:00）自動執行：
 
 1. 檢查投票日是否已過，若已過則停止
-2. 擷取 [taiwanpoliticalzoo.com](https://taiwanpoliticalzoo.com/other-cities/penghu/) 最新內容
-3. 檢查 CEC 候選人登記彙總表頁面（若 CEC 發布新選舉公報，以選舉公報為最優先來源）
+2. 擷取各來源（FB、新聞、台灣選舉懶人包）最新內容
+3. 檢查 CEC 候選人登記彙總表頁面
 4. 比對政見差異（新增 / 修改 / 刪除）
 5. 有變化時自動更新：
    - `candidates.json` / `candidates.csv` / `platforms.csv`
-   - `okf/` 候選人文件與 `okf/log.md`
+   - `okf/candidates/*.md`（含 FB 來源標記）
+   - `okf/log.md`
    - `index.html` 相似度矩陣
-   - `git commit` + `push`（需 `GITHUB_TOKEN`）
+   - `git commit` + `push`
 
 ### 手動執行
 
 ```powershell
-# 完整刷新（寫入檔案並 push，需 GITHUB_TOKEN 環境變數）
+# 完整刷新（所有來源 + 寫入 + push）
 python refresh.py
 
 # 只檢查有無變化，不寫入
@@ -38,7 +48,28 @@ python refresh.py --dry-run
 
 # 只 commit 不 push
 python refresh.py --skip-push
+
+# 單獨執行 FB 擷取
+python fetch_fb.py
+
+# 單獨執行新聞擷取
+python fetch_news.py
 ```
+
+### Facebook 擷取設定
+
+`fetch_fb.py` 需設定以下環境變數之一：
+
+```
+# 方式一（建議）：Page Access Token
+FB_PAGE_TOKEN=你的_page_access_token
+
+# 方式二：App 憑證（會自動換短期 token）
+FB_APP_ID=你的_app_id
+FB_APP_SECRET=你的_app_secret
+```
+
+取得方法：Meta 開發者平台 → 建立 App → 啟用 Page Public Content Access → 產生 Page Token。
 
 ### 本機 Windows 排程
 
@@ -47,6 +78,7 @@ python refresh.py --skip-push
 ```powershell
 # 以本機 Python 執行（需先 clone repo 到本機）
 cd C:\path\to\penghu-magistrate-candidates
+$env:FB_PAGE_TOKEN="你的token"
 python refresh.py
 ```
 
