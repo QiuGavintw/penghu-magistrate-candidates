@@ -17,10 +17,37 @@
 > 網址：`https://QiuGavintw.github.io/penghu-magistrate-candidates/`
 
 網頁功能：
-- 6 位候選人卡片式展示，點擊展開詳細政見
+- 6 位候選人卡片式展示，依號次 1-6 排序，點擊展開詳細政見
 - 搜尋功能（輸入姓名或關鍵字）
 - 每項政見標示來源：候選人官方 Facebook（藍色標籤）或媒體報導
+- **政見相似度矩陣**（TF-IDF bigram cosine similarity，6×6 對照表）
+- **跨候選人最相似政見配對 Top 12**（個別政見層面的相似度排行）
 - 底部完整來源清單，可逐筆查證
+
+## OKF 知識庫
+
+本 repo 的 `okf/` 目錄為 **Open Knowledge Format (OKF) v0.2** 知識庫，供人類與 AI agent 使用：
+
+```
+okf/
+├── index.md                      # Bundle 目錄索引
+├── log.md                        # 更新記錄
+├── election-overview.md          # 選舉概覽（投票日、候選人總表、選情重點）
+├── candidates/
+│   ├── hsu-chih-fu.md            # 許智富（1號）
+│   ├── chou-ni-an.md             # 周倪安（2號）
+│   ├── ye-chu-lin.md             # 葉竹林（3號）
+│   ├── wu-shu-jin.md             # 吳淑瑾（4號）
+│   ├── chen-chin-chung.md        # 陳振中（5號）
+│   └── chen-jin-chuan.md         # 陳盡川（6號）
+├── analysis/
+│   ├── similarity-matrix.md      # 整體相似度矩陣（方法論 + 6×6 對照表 + 解讀）
+│   └── top-similar-pairs.md      # 跨候選人最相似政見配對 Top 12
+└── references/
+    └── sources.md                # 全部外部來源清單（官方社群媒體 + 媒體 + 官方機構）
+```
+
+每個 OKF 文件均含 YAML frontmatter（`type`、`tags`、`sources`、`generated`、`stale_after`），符合 [OKF v0.2 規範](https://github.com/GoogleCloudPlatform/open-knowledge-format)。
 
 > **非官方專案。** 本資料集不是中央選舉委員會或任何政黨的官方出版品。選舉事務請以[中央選舉委員會](https://www.cec.gov.tw/)公告為準。
 
@@ -66,6 +93,13 @@
 penghu-magistrate-candidates/
 ├── index.html                    # 米色主題互動式政見網頁（GitHub Pages 入口）
 ├── .nojekyll                     # GitHub Pages 設定
+├── okf/                          # OKF v0.2 知識庫（見上方 OKF 知識庫段落）
+│   ├── index.md
+│   ├── log.md
+│   ├── election-overview.md
+│   ├── candidates/               # 6 位候選人概念文件
+│   ├── analysis/                 # 相似度分析概念文件
+│   └── references/               # 來源參考
 ├── candidates.json               # 主要資料集（結構化、含完整來源）
 ├── candidates.csv                  # 一位候選人一列（UTF-8 with BOM，Excel 可直接開啟）
 ├── platforms.csv                   # 一項政見一列，方便分析
