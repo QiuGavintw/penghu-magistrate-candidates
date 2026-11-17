@@ -1,238 +1,247 @@
-"""Facebook 頁面爬蟲模組。
+"""Facebook 政見擷取模組（無需 FB API token）。
 
-透過 Meta Graph API（Page Public Content Access）讀取候選人官方
-Facebook 公開頁面貼文，不需登入。需設定 FB_APP_ID 與 FB_APP_SECRET
-環境變數（或 FB_PAGE_TOKEN）。
+方式：
+  1. 已知候選人官方 FB 頁面 URL（hardcoded）
+  2. 以這些 URL 為基礎，爬取主流媒體政治版頁面
+     找出媒體報導中引用 FB 貼文的段落
+  3. 整理出「FB 來源」的政見條目
 
 來源優先順序：
-  1. 選舉公報（CEC PDF，手動更新）
+  1. 選舉公報（CEC PDF，手動）
   2. 候選人官方 Facebook（本模組）
-  3. 主流媒體報導（fetch_news.py）
-  4. 台灣選舉懶人包（scraper/ 現有流程）
+  3. 主流媒體報導
+  4. 台灣選舉懶人包
 
-環境變數：
-  FB_PAGE_TOKEN  - 長期有效的 Page Access Token（建議），或
-  FB_APP_ID + FB_APP_SECRET - 用於自動取得 Page Token
+不需要 FB_PAGE_TOKEN，不需要 API key。
 
 用法：
-  python -m fetch_fb            # 執行一次，輸出 JSON 到 .cache/fb/
-  python -m fetch_fb --dry-run  # 只檢查，不寫入
+  python -m fetch_fb
+  python -m fetch_fb --dry-run
 """
 
 from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
-import subprocess
 import sys
 import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
-from urllib.parse import urljoin
 
 import requests
+from bs4 import BeautifulSoup
 
 TZ_TAIPEI = timezone(timedelta(hours=8))
 
-# --- 候選人 Facebook 頁面 ---------------------------------------------------
-# 格式：name -> (page_username_or_id, page_id)
-# page_id 若不知道，可用 page_username 透過 Graph API 查詢。
+# --- 候選人官方 FB 頁面（已知 URL）-------------------------------------------
 CANDIDATE_FB_PAGES: dict[str, dict[str, str]] = {
     "葉竹林": {
-        "page": "YEHCHULINinPENGHU",
-        "label": "葉竹林 澎湖縣長候選人 官方粉絲團",
+        "page_url": "https://www.facebook.com/YEHCHULINinPENGHU/",
+        "known_posts": [
+            "https://www.facebook.com/YEHCHULINinPENGHU/posts/1705173708280367/",
+            "https://www.facebook.com/YEHCHULINinPENGHU/posts/1667354252062313/",
+        ],
+        "search_terms": ["葉竹林 澎湖 縣長 政見", "葉竹林 澎湖 消費券"],
     },
     "吳淑瑾": {
-        "page": "wushuchin.penghu",
-        "label": "吳淑瑾 官方粉絲團",
+        "page_url": "https://www.facebook.com/wushuchin.penghu/",
+        "known_posts": [
+            "https://www.facebook.com/groups/2504517542962730/permalink/28514330674888061/",
+        ],
+        "search_terms": ["吳淑瑾 澎湖 縣長 政見", "吳淑瑾 澎湖 醫療 機票"],
     },
     "陳盡川": {
-        "page": "chen.jin.chuan.441889",
-        "label": "陳盡川（牛哥）個人帳號",
+        "page_url": "https://www.facebook.com/chen.jin.chuan.441889/",
+        "known_posts": [
+            "https://www.facebook.com/chen.jin.chuan.441889/posts/4536071869942401/",
+        ],
+        "search_terms": ["陳盡川 牛哥 澎湖 海洋 政見", "陳盡川 澎湖 縣長 漁業"],
     },
 }
 
-# 政見關鍵詞（用於篩選與政見相關的貼文）
+# 媒體政治版頁面（直接爬取，找 FB 連結）
+MEDIA_POLITICS_PAGES = [
+    ("自由時報", "https://news.ltn.com.tw/list/breakingnews/politics", "ltn.com.tw"),
+    ("聯合新聞網", "https://udn.com/news/jsp/16707.jsp", "udn.com"),
+    ("讀點 ReadMore", "https://www.moredetailnews.com/%e6%96%b0%e8%81%9e/%e6%94%bf%e6%b2%bb/", "moredetailnews.com"),
+]
+
+USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36"
+)
+REQUEST_TIMEOUT = 20
+
+# 政見關鍵詞
 POLICY_KEYWORDS = [
-    "政見", "政策", "參選", "競選", "澎湖", "縣長",
+    "政見", "政策", "參選", "競選", "澎湖",
     "醫療", "交通", "觀光", "漁業", "垃圾", "環境",
-    "青年", "教育", "養老", "托育", "農", "漁",
-    "經濟", "消費", "禮金", "補貼", "補助", "焚化",
-    "航空", "機票", "船", "離島", "軍公教",
+    "青年", "教育", "養老", "托育", "經濟", "消費",
+    "禮金", "補貼", "補助", "焚化", "航空", "機票",
+    "離島", "軍公教", "振興", "安居", "返鄉",
 ]
 
-# 排除關鍵詞（廣告、個人生活）
-EXCLUDE_KEYWORDS = [
-    "抽獎", "转发", "分享連結", "影片", "直播",
-]
 
-GRAPH_API_BASE = "https://graph.facebook.com/v23.0"
-
-
-def _get_page_token() -> str:
-    """從環境變數取得 Page Access Token。"""
-    token = os.environ.get("FB_PAGE_TOKEN", "")
-    if token:
-        return token
-
-    app_id = os.environ.get("FB_APP_ID", "")
-    app_secret = os.environ.get("FB_APP_SECRET", "")
-    if not app_id or not app_secret:
-        return ""
-
-    # 用 app_id|app_secret 換短期 token（只可讀 public 資料）
-    url = f"{GRAPH_API_BASE}/oauth/access_token"
-    params = {"client_id": app_id, "client_secret": app_secret, "grant_type": "client_credentials"}
-    try:
-        resp = requests.get(url, params=params, timeout=15)
-        resp.raise_for_status()
-        return resp.json().get("access_token", "")
-    except requests.RequestException:
-        return ""
+def _has_policy_content(text: str) -> bool:
+    """判斷文字是否含政見關鍵詞。"""
+    lower = text.lower()
+    return any(kw.lower() in lower for kw in POLICY_KEYWORDS)
 
 
-def _resolve_page_id(page_username: str, token: str) -> str | None:
-    """以 page username 查詢 page ID。"""
-    url = f"{GRAPH_API_BASE}/{page_username}"
-    params = {"fields": "id,name,fan_count", "access_token": token}
-    try:
-        resp = requests.get(url, params=params, timeout=15)
-        if resp.status_code == 200:
-            return resp.json().get("id")
-    except requests.RequestException:
-        pass
-    return None
+def _fetch_fb_referenced_from_media() -> dict[str, list[dict[str, Any]]]:
+    """爬取媒體政治版頁面，找出引用 FB 貼文的報導。
 
-
-def _fetch_posts(page_id: str, token: str, limit: int = 50) -> list[dict[str, Any]]:
-    """擷取頁面最近貼文。"""
-    url = f"{GRAPH_API_BASE}/{page_id}/posts"
-    params = {
-        "fields": "message,created_time,link,permalink_url,shares{count},reactions.summary(true){summary_count},comments.limit(5){data,text,from{name},created_time}",
-        "limit": min(limit, 50),
-        "access_token": token,
-    }
-    posts: list[dict[str, Any]] = []
-    try:
-        resp = requests.get(url, params=params, timeout=20)
-        if resp.status_code != 200:
-            print(f"   FB API 回傳 {resp.status_code}：{resp.text[:200]}")
-            return posts
-        data = resp.json()
-        for item in data.get("data", []):
-            posts.append(item)
-    except requests.RequestException as exc:
-        print(f"   FB API 擷取失敗：{exc}")
-    return posts
-
-
-def _is_policy_post(post: dict[str, Any]) -> bool:
-    """判斷貼文是否與政見相關。"""
-    text = (post.get("message") or "").lower()
-    if not text:
-        return False
-    for kw in EXCLUDE_KEYWORDS:
-        if kw.lower() in text:
-            return False
-    return any(kw.lower() in text for kw in POLICY_KEYWORDS)
-
-
-def _extract_post_data(post: dict[str, Any], candidate: str) -> dict[str, Any] | None:
-    """從 FB 貼文中提取結構化資料。"""
-    message = (post.get("message") or "").strip()
-    if not message or not _is_policy_post(post):
-        return None
-
-    created = post.get("created_time", "")
-    permalink = post.get("permalink_url") or f"https://www.facebook.com/{post.get('id', '')}"
-
-    return {
-        "candidate": candidate,
-        "source": "facebook",
-        "source_label": "官方社群媒體（Facebook）",
-        "url": permalink,
-        "post_id": post.get("id", ""),
-        "created_time": created,
-        "content": message[:500],
-        "has_link": bool(post.get("link")),
-        "link": post.get("link"),
+    回傳 {candidate_name: [article_data]}
+    """
+    results: dict[str, list[dict[str, Any]]] = {
+        name: [] for name in CANDIDATE_FB_PAGES
     }
 
+    for media_name, url, domain in MEDIA_POLITICS_PAGES:
+        print(f"   爬取 {media_name} 政治版...")
+        try:
+            resp = requests.get(
+                url,
+                headers={"User-Agent": USER_AGENT},
+                timeout=REQUEST_TIMEOUT,
+            )
+            if resp.status_code != 200:
+                print(f"     HTTP {resp.status_code}，跳過")
+                continue
 
-def fetch_all(candidate_names: list[str] | None = None) -> dict[str, list[dict[str, Any]]]:
-    """擷取所有候選人 FB 貼文，回傳 {candidate_name: [post_data]}。"""
-    token = _get_page_token()
-    if not token:
-        print("   FB_PAGE_TOKEN / FB_APP_ID + FB_APP_SECRET 未設定，跳過 Facebook 擷取。")
-        print("   請設定環境變數後重試。")
-        return {}
+            soup = BeautifulSoup(resp.text, "html.parser")
 
-    targets = candidate_names or list(CANDIDATE_FB_PAGES.keys())
-    results: dict[str, list[dict[str, Any]]] = {}
+            # 找所有 FB 連結
+            for a in soup.select("a[href*='facebook.com']"):
+                href = a.get("href", "")
+                text = a.get_text(strip=True)
+                if not _has_policy_content(text):
+                    continue
 
-    for name in targets:
-        page_info = CANDIDATE_FB_PAGES.get(name)
-        if not page_info:
-            continue
+                # 判斷是哪位候選人
+                matched_candidate = None
+                for name, info in CANDIDATE_FB_PAGES.items():
+                    if name in text or info["page_url"].split("/")[-2] in href:
+                        matched_candidate = name
+                        break
 
-        print(f"   擷取 {name} 的 Facebook 貼文...")
-        page_id = _resolve_page_id(page_info["page"], token)
-        if not page_id:
-            print(f"     找不到 page ID，跳過。")
-            continue
+                if not matched_candidate:
+                    continue
 
-        raw_posts = _fetch_posts(page_id, token, limit=30)
-        posts = []
-        for post in raw_posts:
-            data = _extract_post_data(post, name)
-            if data:
-                posts.append(data)
+                entry = {
+                    "candidate": matched_candidate,
+                    "source": "facebook_via_media",
+                    "media": media_name,
+                    "title": text[:100],
+                    "url": href,
+                    "is_policy": True,
+                }
+                # 去重
+                existing_urls = {e["url"] for e in results[matched_candidate]}
+                if entry["url"] not in existing_urls:
+                    results[matched_candidate].append(entry)
 
-        results[name] = posts
-        print(f"     取得 {len(posts)} 篇政見相關貼文")
-        time.sleep(1)  # 禮貌性延遲
+            print(f"     找到 {sum(len(v) for v in results.values())} 篇 FB 引用報導（累計）")
+            time.sleep(2)
+
+        except requests.RequestException as exc:
+            print(f"     擷取失敗：{exc}")
 
     return results
 
 
+def _fetch_known_fb_posts() -> dict[str, list[dict[str, Any]]]:
+    """以已知 FB 貼文 URL 建立來源清單（不需擷取 FB 內容，只記錄來源）。"""
+    results: dict[str, list[dict[str, Any]]] = {
+        name: [] for name in CANDIDATE_FB_PAGES
+    }
+    for name, info in CANDIDATE_FB_PAGES.items():
+        for post_url in info.get("known_posts", []):
+            results[name].append(
+                {
+                    "candidate": name,
+                    "source": "facebook",
+                    "url": post_url,
+                    "note": "已知官方 FB 政見貼文（內容需手動查證或透過 FB API 擷取）",
+                }
+            )
+    return results
+
+
+def fetch_all() -> dict[str, Any]:
+    """執行完整擷取流程。"""
+    print("   A) 收集已知 FB 貼文 URL...")
+    known = _fetch_known_fb_posts()
+    for name, posts in known.items():
+        if posts:
+            print(f"     {name}: {len(posts)} 篇已知 FB 貼文")
+
+    print("   B) 爬取媒體頁面找 FB 引用...")
+    media_refs = _fetch_fb_referenced_from_media()
+    for name, refs in media_refs.items():
+        if refs:
+            print(f"     {name}: {len(refs)} 篇媒體引用 FB 報導")
+
+    # 合併
+    merged: dict[str, list[dict[str, Any]]] = {}
+    for name in CANDIDATE_FB_PAGES:
+        seen: set[str] = set()
+        combined: list[dict[str, Any]] = []
+        for item in known.get(name, []) + media_refs.get(name, []):
+            if item["url"] not in seen:
+                seen.add(item["url"])
+                combined.append(item)
+        merged[name] = combined
+
+    return merged
+
+
 def write_cache(data: dict[str, list[dict[str, Any]]], cache_dir: Path) -> None:
-    """寫入 .cache/fb/ 目錄。"""
     fb_dir = cache_dir / "fb"
     fb_dir.mkdir(parents=True, exist_ok=True)
     for name, posts in data.items():
         path = fb_dir / f"{name}.json"
-        path.write_text(json.dumps(posts, ensure_ascii=False, indent=2), encoding="utf-8")
+        path.write_text(
+            json.dumps(
+                {"fetched_at": datetime.now(TZ_TAIPEI).isoformat(timespec="seconds"), "posts": posts},
+                ensure_ascii=False,
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
 
 
 def main(argv: list[str] | None = None) -> int:
     if sys.platform == "win32":
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-    parser = argparse.ArgumentParser(description="擷取候選人官方 Facebook 政見貼文")
+    parser = argparse.ArgumentParser(description="擷取候選人官方 Facebook 政見來源")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
 
     from scraper import config
     cache_dir = config.CACHE_DIR
 
-    print(f"=== Facebook 政見擷取 {datetime.now(TZ_TAIPEI).isoformat()} ===")
+    print(f"=== Facebook 政見來源擷取 {datetime.now(TZ_TAIPEI).isoformat()} ===")
     data = fetch_all()
+
+    total = sum(len(v) for v in data.values())
 
     if args.dry_run:
         for name, posts in data.items():
             for p in posts:
-                print(f"  [{name}] {p['content'][:60]}... ({p['created_time']})")
-        print("[dry-run] 未寫入快取。")
+                src = p.get("source", "?")
+                print(f"  [{name}] ({src}) {p.get('title', p.get('url', ''))[:70]}")
+        print(f"\n[dry-run] 共 {total} 條，未寫入快取。")
         return 0
 
-    if data:
+    if total:
         write_cache(data, cache_dir)
-        print(f"已寫入 {cache_dir / 'fb'} /")
+        print(f"\n已寫入 {cache_dir / 'fb'} /（共 {total} 條）")
     else:
-        print("未擷取到任何貼文。")
+        print("\n未擷取到任何 FB 來源。")
     return 0
 
 
