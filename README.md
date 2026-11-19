@@ -17,10 +17,13 @@
 
 | 優先順序 | 來源 | 說明 | 模組 |
 |----------|------|------|------|
-| 1 | **選舉公報（CEC PDF）** | 最正式、最優先來源；CEC 發布新公報時以此為準 | `check_cec_announcement()`（手動更新 `candidates.json`） |
-| 2 | **候選人官方 Facebook** | 候選人第一手政見發表；葉竹林、吳淑瑾、陳盡川有官方 FB | `fetch_fb.py` |
-| 3 | **主流媒體報導** | 自由時報、中央社、NOWnews、新頭條等 | `fetch_news.py` |
-| 4 | **台灣選舉懶人包** | 現有 scraper/ 流程，結構化整理 | `scraper/` |
+| 1 | **選舉公報（CEC）** | 最正式、最優先來源；候選人所填列政見原文 | `apply_ballot.py` |
+| 2 | 候選人官方 Facebook | 候選人第一手政見發表；葉竹林、吳淑瑾、陳盡川有官方 FB | `fetch_fb.py` |
+| 3 | 主流媒體報導 | 自由時報、中央社、NOWnews、新頭條等 | `fetch_news.py` |
+| 4 | 台灣選舉懶人包 | 現有 scraper/ 流程，結構化整理 | `scraper/` |
+
+> 選舉公報 PDF：`https://bulletin.cec.gov.tw/01選報/04縣市長/115年/澎湖縣縣長.pdf`
+> 下載後執行 `python apply_ballot.py` 即可將公報資料套用到 `candidates.json`、OKF 與相似度分析。
 
 ### 自動執行（GitHub Actions）
 

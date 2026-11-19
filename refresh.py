@@ -33,6 +33,9 @@ OKF_DIR = PROJECT_ROOT / "okf"
 
 ELECTION_DAY = datetime(2026, 11, 28, 8, 0, tzinfo=TZ_TAIPEI)
 
+# 選舉公報 PDF 網址（最優先來源）
+CEC_BALLOT_PDF = "https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf"
+
 # 候選人官方 Facebook（用於標記來源類型）
 CANDIDATE_FB = {
     "葉竹林": "https://www.facebook.com/YEHCHULINinPENGHU/",
@@ -70,18 +73,35 @@ def fetch_latest_index() -> dict[str, Any]:
 
 
 def check_cec_announcement() -> dict[str, Any] | None:
-    """檢查 CEC 候選人頁面是否有更新（以 URL 最後修改時間判斷）。"""
+    """檢查 CEC 選舉公報，下載 PDF 到 .cache/ballot_penghu.pdf。"""
+    import requests
     fetcher = Fetcher(cache_dir=None)
+    ballot_pdf_path = config.CACHE_DIR / "ballot_penghu.pdf"
+
     try:
-        html = fetcher.get(config.CEC_BALLOT_PAGE)
-    except FetchError:
-        return None
-    # 簡易檢查：記錄檢查日期，不解析 PDF
-    return {
-        "checked_at": now_iso(),
-        "url": config.CEC_BALLOT_PAGE,
-        "note": "已檢查 CEC 候選人登記彙總表頁面，PDF 內容未重新解析。",
-    }
+        resp = requests.get(CEC_BALLOT_PDF, timeout=30)
+        if resp.status_code == 200:
+            config.CACHE_DIR.mkdir(parents=True, exist_ok=True)
+            ballot_pdf_path.write_bytes(resp.content)
+            return {
+                "checked_at": now_iso(),
+                "url": CEC_BALLOT_PDF,
+                "pdf_downloaded": str(ballot_pdf_path),
+                "pdf_size": len(resp.content),
+                "note": "選舉公報 PDF 已下載，可執行 apply_ballot.py 套用資料。",
+            }
+        else:
+            return {
+                "checked_at": now_iso(),
+                "url": CEC_BALLOT_PDF,
+                "note": f"選舉公報 PDF 回傳 HTTP {resp.status_code}",
+            }
+    except requests.RequestException as exc:
+        return {
+            "checked_at": now_iso(),
+            "url": CEC_BALLOT_PDF,
+            "note": f"下載選舉公報失敗：{exc}",
+        }
 
 
 def diff_platforms(
@@ -358,6 +378,22 @@ def run_refresh(dry_run: bool = False) -> int:
         print(f"   CEC 頁面檢查時間：{cec_check['checked_at']}")
         print(f"   注意：{cec_check['note']}")
         print("   （若 CEC 發布新選舉公報，以選舉公報為最優先來源，請手動更新 candidates.json）")
+
+    # 若有新的選舉公報 PDF，套用 apply_ballot.py 邏輯
+    ballot_pdf = config.CACHE_DIR / "ballot_penghu.pdf"
+    if ballot_pdf.exists():
+        print("   偵測到選舉公報 PDF，套用 apply_ballot.py...")
+        try:
+            import importlib.util as _ilu
+            spec = _ilu.spec_from_file_location("apply_ballot", PROJECT_ROOT / "apply_ballot.py")
+            mod = _ilu.module_from_spec(spec)
+            _ilu.loader.exec_module(mod)
+            mod.main()
+            all_changes: list[str] = []
+            all_changes.append("套用選舉公報資料（candidates.json + OKF）")
+            print(f"   已套用：{len(all_changes)} 項")
+        except Exception as exc:
+            print(f"   套用選舉公報失敗：{exc}", file=sys.stderr)
 
     # --- 主要來源：候選人官方 Facebook ---
     print("4/6 擷取候選人官方 Facebook 政見貼文...")

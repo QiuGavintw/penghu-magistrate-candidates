@@ -16,7 +16,8 @@ def tokenize(text: str) -> list[str]:
     text = re.sub(r"[，。、；！？（）「」『』【】\[\]{}《》]", "", text)
     text = re.sub(r"\d+", "", text)
     chars = [ch for ch in text if ch.isalpha() and "\u4e00" <= ch <= "\u9fff"]
-    bigrams = [chars[i : i + 2] for i in range(len(chars) - 1)]
+    cleaned = "".join(chars)
+    bigrams = [cleaned[i : i + 2] for i in range(len(cleaned) - 1)]
     return chars + bigrams
 
 
