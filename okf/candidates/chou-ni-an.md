@@ -5,7 +5,7 @@ description: 台聯黨澎湖縣長候選人，台聯黨主席，主打農業改�
 resource: https://blindvote.app/bio/penghu/chou-ni-an
 tags: [澎湖, 縣長, 台聯黨, 周倪安]
 status: stable
-generated: { by: process:ballot-refresh, at: 2026-11-19T22:08:10+08:00 }
+generated: { by: process:ballot-refresh, at: 2026-11-19T22:29:30+08:00 }
 stale_after: 2026-11-28T00:00:00Z
 sources:
   - id: cna-agri

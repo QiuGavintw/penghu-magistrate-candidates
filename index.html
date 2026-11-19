@@ -5,71 +5,67 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>澎湖縣長候選人政見 | 2026</title>
 <style>
-:root {
-  --bg: #F5F0E8; --card: #FFFDF8; --border: #E8DFD0;
-  --text: #3A3228; --muted: #7A7060; --accent: #B8956B;
-  --highlight: #FFF3D6;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; padding: 2rem 1rem; }
-.container { max-width: 900px; margin: 0 auto; }
-header { text-align: center; margin-bottom: 1.5rem; padding: 1.5rem 0; border-bottom: 2px solid var(--border); }
-header h1 { font-size: 1.6rem; margin-bottom: 0.4rem; }
-header p { color: var(--muted); font-size: 0.9rem; }
-.banner { background: var(--highlight); border-left: 4px solid var(--accent); padding: 0.9rem 1.1rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem; font-size: 0.88rem; }
-.banner strong { color: var(--accent); }
-.search-box { width: 100%; padding: 0.7rem 1rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; background: var(--card); color: var(--text); margin-bottom: 1.5rem; }
-.search-box:focus { outline: none; border-color: var(--accent); }
-.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 1.25rem; overflow: hidden; }
-.card-header { padding: 1.1rem 1.3rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.8rem; cursor: pointer; user-select: none; }
-.card-header:hover { background: #FAF7F0; }
-.badge { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; font-weight: 600; padding: 0.2rem 0.55rem; border-radius: 20px; white-space: nowrap; }
-.badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-.b-dpp { background: #e8f5e9; color: #2e7d32; } .b-dpp::before { background: #4A8C5C; }
-.b-kmt { background: #e3f2fd; color: #1565c0; } .b-kmt::before { background: #4A7BA8; }
-.b-ttp { background: #fff3e0; color: #e65100; } .b-ttp::before { background: #C87830; }
-.b-ind { background: #fce4ec; color: #880e4f; } .b-ind::before { background: #B84A4A; }
-.b-teal { background: #e0f2f1; color: #00695c; } .b-teal::before { background: #3A8C8C; }
-.card-header h2 { font-size: 1.05rem; font-weight: 700; flex: 1; }
-.num { font-size: 0.82rem; color: var(--muted); font-weight: 600; }
-.chevron { color: var(--muted); font-size: 0.75rem; transition: transform 0.2s; }
-.card.open .chevron { transform: rotate(180deg); }
-.card-body { display: none; padding: 1.25rem; }
-.card.open .card-body { display: block; }
-.tagline { background: var(--highlight); border: 1px solid var(--border); border-radius: 8px; padding: 0.8rem 1rem; margin-bottom: 1rem; font-size: 0.92rem; }
-.tagline strong { color: var(--accent); }
-.policy { background: #F9F6F0; border: 1px solid var(--border); border-radius: 8px; padding: 0.8rem 0.9rem; margin-bottom: 0.6rem; font-size: 0.9rem; }
-.policy strong { color: var(--text); }
-.src { display: flex; align-items: center; gap: 0.45rem; margin-top: 0.4rem; font-size: 0.78rem; color: var(--muted); flex-wrap: wrap; }
-.src a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
-.src-ballot { background: var(--accent); color: white; font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.45rem; border-radius: 4px; }
-.src-fb { background: #4A7BA8; color: white; font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.45rem; border-radius: 4px; display: inline-flex; align-items: center; gap: 0.25rem; }
-.src-media { background: var(--highlight); color: var(--accent); font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.45rem; border-radius: 4px; }
-.sim-section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.3rem; margin-top: 1.5rem; }
-.sim-section h2 { font-size: 1rem; color: var(--accent); margin-bottom: 0.4rem; }
-.sim-desc { font-size: 0.83rem; color: var(--muted); margin-bottom: 1rem; }
-.sim-table-wrap { overflow-x: auto; margin-bottom: 1.25rem; }
-table.sim { width: 100%; border-collapse: collapse; font-size: 0.78rem; text-align: center; }
-table.sim th { background: var(--highlight); color: var(--accent); font-weight: 700; padding: 0.45rem 0.5rem; border: 1px solid var(--border); min-width: 3.5rem; }
-table.sim td { padding: 0.4rem 0.5rem; border: 1px solid var(--border); }
-table.sim .diag { background: var(--highlight); font-weight: 700; color: var(--accent); }
-.pair { background: #F9F6F0; border: 1px solid var(--border); border-radius: 8px; padding: 0.8rem 0.9rem; margin-bottom: 0.6rem; font-size: 0.85rem; }
-.pair-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem; flex-wrap: wrap; gap: 0.4rem; }
-.pair-sim { font-size: 0.8rem; font-weight: 700; color: white; background: var(--accent); padding: 0.1rem 0.5rem; border-radius: 20px; }
-.pair-cands { font-weight: 700; }
-.pair-policy { color: var(--muted); font-size: 0.8rem; line-height: 1.5; }
-.pair-policy strong { color: var(--text); }
-.pair-arrow { color: var(--accent); font-size: 0.85rem; margin: 0.2rem 0; }
-.src-section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.3rem; margin-top: 1.5rem; }
-.src-section h2 { font-size: 1rem; color: var(--accent); margin-bottom: 0.8rem; }
-.src-list { list-style: none; font-size: 0.83rem; }
-.src-list li { padding: 0.35rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 0.5rem; }
-.src-list li:last-child { border-bottom: none; }
-.src-list a { color: var(--accent); text-decoration: none; word-break: break-all; }
-.src-list a:hover { text-decoration: underline; }
-footer { text-align: center; margin-top: 1.5rem; padding: 0.8rem 0; color: var(--muted); font-size: 0.78rem; border-top: 1px solid var(--border); }
-.hidden { display: none !important; }
-@media (max-width: 600px) { body { padding: 1rem 0.7rem; } header h1 { font-size: 1.3rem; } }
+:root { --bg:#F5F0E8; --card:#FFFDF8; --border:#E8DFD0; --text:#3A3228; --muted:#7A7060; --accent:#B8956B; --highlight:#FFF3D6; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif; background:var(--bg); color:var(--text); line-height:1.8; padding:2rem 1rem; }
+.container { max-width:900px; margin:0 auto; }
+header { text-align:center; margin-bottom:1.5rem; padding:1.5rem 0; border-bottom:2px solid var(--border); }
+header h1 { font-size:1.6rem; margin-bottom:0.4rem; }
+header p { color:var(--muted); font-size:0.9rem; }
+.banner { background:var(--highlight); border-left:4px solid var(--accent); padding:0.9rem 1.1rem; border-radius:0 8px 8px 0; margin-bottom:1.5rem; font-size:0.88rem; }
+.banner strong { color:var(--accent); }
+.search-box { width:100%; padding:0.7rem 1rem; border:1px solid var(--border); border-radius:8px; font-size:0.95rem; background:var(--card); color:var(--text); margin-bottom:1.5rem; }
+.search-box:focus { outline:none; border-color:var(--accent); }
+.card { background:var(--card); border:1px solid var(--border); border-radius:12px; margin-bottom:1.25rem; overflow:hidden; }
+.card-header { padding:1.1rem 1.3rem; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:0.8rem; cursor:pointer; user-select:none; }
+.card-header:hover { background:#FAF7F0; }
+.badge { display:inline-flex; align-items:center; gap:0.35rem; font-size:0.78rem; font-weight:600; padding:0.2rem 0.55rem; border-radius:20px; white-space:nowrap; }
+.badge::before { content:''; width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.b-dpp { background:#e8f5e9; color:#2e7d32; } .b-dpp::before { background:#4A8C5C; }
+.b-kmt { background:#e3f2fd; color:#1565c0; } .b-kmt::before { background:#4A7BA8; }
+.b-ttp { background:#fff3e0; color:#e65100; } .b-ttp::before { background:#C87830; }
+.b-ind { background:#fce4ec; color:#880e4f; } .b-ind::before { background:#B84A4A; }
+.b-teal { background:#e0f2f1; color:#00695c; } .b-teal::before { background:#3A8C8C; }
+.card-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.num { font-size:0.82rem; color:var(--muted); font-weight:600; }
+.chevron { color:var(--muted); font-size:0.75rem; transition:transform 0.2s; }
+.card.open .chevron { transform:rotate(180deg); }
+.card-body { display:none; padding:1.25rem; }
+.card.open .card-body { display:block; }
+.tagline { background:var(--highlight); border:1px solid var(--border); border-radius:8px; padding:0.8rem 1rem; margin-bottom:1rem; font-size:0.92rem; }
+.tagline strong { color:var(--accent); }
+.policy { background:#F9F6F0; border:1px solid var(--border); border-radius:8px; padding:0.8rem 0.9rem; margin-bottom:0.6rem; font-size:0.9rem; }
+.policy strong { color:var(--text); }
+.src { display:flex; align-items:center; gap:0.45rem; margin-top:0.4rem; font-size:0.78rem; color:var(--muted); flex-wrap:wrap; }
+.src a { color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+.src-ballot { background:var(--accent); color:white; font-size:0.7rem; font-weight:600; padding:0.15rem 0.45rem; border-radius:4px; }
+.src-fb { background:#4A7BA8; color:white; font-size:0.7rem; font-weight:600; padding:0.15rem 0.45rem; border-radius:4px; display:inline-flex; align-items:center; gap:0.25rem; }
+.src-media { background:var(--highlight); color:var(--accent); font-size:0.7rem; font-weight:600; padding:0.15rem 0.45rem; border-radius:4px; }
+.sim-section { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.3rem; margin-top:1.5rem; }
+.sim-section h2 { font-size:1rem; color:var(--accent); margin-bottom:0.4rem; }
+.sim-desc { font-size:0.83rem; color:var(--muted); margin-bottom:1rem; }
+.sim-table-wrap { overflow-x:auto; margin-bottom:1.25rem; }
+table.sim { width:100%; border-collapse:collapse; font-size:0.78rem; text-align:center; }
+table.sim th { background:var(--highlight); color:var(--accent); font-weight:700; padding:0.45rem 0.5rem; border:1px solid var(--border); min-width:3.5rem; }
+table.sim td { padding:0.4rem 0.5rem; border:1px solid var(--border); }
+table.sim .diag { background:var(--highlight); font-weight:700; color:var(--accent); }
+.pair { background:#F9F6F0; border:1px solid var(--border); border-radius:8px; padding:0.8rem 0.9rem; margin-bottom:0.6rem; font-size:0.85rem; }
+.pair-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.4rem; }
+.pair-sim { font-size:0.8rem; font-weight:700; color:white; background:var(--accent); padding:0.1rem 0.5rem; border-radius:20px; }
+.pair-cands { font-weight:700; }
+.pair-policy { color:var(--muted); font-size:0.8rem; line-height:1.5; }
+.pair-policy strong { color:var(--text); }
+.pair-arrow { color:var(--accent); font-size:0.85rem; margin:0.2rem 0; }
+.src-section { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.3rem; margin-top:1.5rem; }
+.src-section h2 { font-size:1rem; color:var(--accent); margin-bottom:0.8rem; }
+.src-list { list-style:none; font-size:0.83rem; }
+.src-list li { padding:0.35rem 0; border-bottom:1px solid var(--border); display:flex; align-items:flex-start; gap:0.5rem; }
+.src-list li:last-child { border-bottom:none; }
+.src-list a { color:var(--accent); text-decoration:none; word-break:break-all; }
+.src-list a:hover { text-decoration:underline; }
+footer { text-align:center; margin-top:1.5rem; padding:0.8rem 0; color:var(--muted); font-size:0.78rem; border-top:1px solid var(--border); }
+.hidden { display:none !important; }
+@media (max-width:600px) { body { padding:1rem 0.7rem; } header h1 { font-size:1.3rem; } }
 </style>
 </head>
 <body>
@@ -78,16 +74,13 @@ footer { text-align: center; margin-top: 1.5rem; padding: 0.8rem 0; color: var(-
   <h1>澎湖縣長候選人政見</h1>
   <p>2026 澎湖縣選舉 · 共 6 位候選人 · 投票日：2026年11月28日 · 資料來源：澎湖縣選舉委員會選舉公報</p>
 </header>
-
 <div class="banner">
-  <strong>資料來源：</strong>本頁政見以<b>澎湖縣選舉委員會選舉公報</b>（CEC 公告）為最優先來源，其次為候選人官方 Facebook 與主流媒體報導。所有來源均附連結，請自行查證。
+  <strong>資料來源：</strong>本頁政見以<b>澎湖縣選舉委員會選舉公報</b>（CEC 公告）為最優先來源，1 號許智富與 2 號周倪安之政見以公報截圖轉錄方式取得，其次為候選人官方 Facebook 與主流媒體報導。所有來源均附連結，請自行查證。
 </div>
-
 <input type="text" class="search-box" id="searchBox" placeholder="搜尋候選人姓名或政見內容...">
-
 <div id="candidates">
 
-<div class="card" data-name="許智富 無黨籍 路平專案 道路 辯論 政見發表 副縣長" data-content="路平專案 道路 辯論 政見發表">
+<div class="card" data-name="許智富 無黨籍 食 衣 住 行 育 樂" data-content="食 衣 住 行 育 樂">
   <div class="card-header" onclick="toggleCard(this)">
     <span class="badge b-ind">無黨籍</span>
     <h2>許智富</h2>
@@ -95,23 +88,16 @@ footer { text-align: center; margin-top: 1.5rem; padding: 0.8rem 0; color: var(-
     <span class="chevron">▼</span>
   </div>
   <div class="card-body">
-    <div class="tagline"><strong>參選主軸：</strong>前澎湖縣副縣長，具建設處長、民政處長行政經歷，2022 年曾代表台灣民眾黨參選縣議員，2026 年以無黨籍身分參選縣長。</div>
-    <div class="policy">
-      <strong>路平專案：</strong>針對澎湖道路規劃提出系統性解決方案，要求道路挖掘施工透明化管理
-      <div class="src"><span class="src-media">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div>
-    </div>
-    <div class="policy">
-      <strong>倡議公辦政見發表會改採辯論形式：</strong>認為縣長選舉除了讓候選人提出政見，更應透過公開、理性的政策對話，讓選民充分了解各候選人治理理念
-      <div class="src"><span class="src-fb">f Facebook</span><a href="https://www.facebook.com/myPenghu/posts/1524334506389247/" target="_blank" rel="noopener">我是澎湖人</a></div>
-    </div>
-    <div class="policy">
-      <strong>下辯論戰帖：</strong>向所有參選縣長的候選人發出公開邀請，參與電視辯論
-      <div class="src"><span class="src-media">媒體</span><a href="https://news.ltn.com.tw/news/politics/breakingnews/5557614" target="_blank" rel="noopener">自由時報</a></div>
-    </div>
+    <div class="tagline"><strong>參選主軸：</strong>前澎湖縣副縣長，具建設處長、民政處長行政經歷，以「食衣住行育樂」六面向提出施政願景。</div>
+<div class="policy"><strong>食：</strong>建立重大食安事件應急處變機制；營造減少行政協調日產業化；剝除混合飲水精準種植混溶作物；建立北區市場外圍廠商自治管理制度；北苑市場分區重整升級並增設用餐空間；推動社區長者青銀共餐及離島送餐服務；打造第三漁港漁市，結合餐飲文創；海洋生態保育以沙蝦少量化為核心物種。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>衣：</strong>支持青年返鄉與地方創業；補助勞工津貼，提升專業技能；提供青年組裝協助與創業輔導；公共空間導入青年使用與創意實驗；鼓勵勞工20萬元低利率週期周转貸款；盤點稀土土地開發及招商創造就業機會；強化重難患者護送入島醫療空中後送機制。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>住：</strong>全面檢討各鄉市計畫區；提升供水穩定性與飲水精準性並清淤水庫；推動農變更及住宅合理開發；打造節型排水系統，改善南橫排水；優先完成公工20萬及低利宅宅週期周转貸款；開放周邊區，打造開放式垃圾處理中心；取消住宅電價加價補貼，鼓勵綠髮發展；建立舊建創新上萬件與新案制度。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>行：</strong>推動公共自行車及電動自行車；鬆長版自主路線平車業全面升級；改善市區汽機車，避雙車停車問題；打造間島內南北向車行道或車道分隔；漁業高標準優先路權及平宅回鄉；強化離島固定班交通船機接駁機制；改善交通船票務導入手持票務電子系統。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>育：</strong>強化運動防護員體系；興建各運動項目室內場館；編列各校運動比賽與運動經費；打造澎湖六市室內運動中心；改善運動場區增加夜間照明設備；推動體育行政處室及合理化體育設備；學教100萬以上工程建築疏開一流；輔助教師成立交流中心保障教師權益。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>樂：</strong>打造澎湖海洋水族館；導入澎湖海洋探險子館；全面推動白沙綠藻漁業改善；規劃澎湖內海及環島觀光新航道；推動島區亮化生態與商業友善招牌；活化歷史建築、古蹟及重光園區空間；觀音沙灘整治水產養殖及安全飲水设施。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
   </div>
 </div>
-
-<div class="card" data-name="周倪安 台聯 農業 荒地代管 農經學院 漁業 守護澎湖 翻轉 改革 澎湖科大" data-content="農業 荒地代管 農經學院 漁業 守護澎湖 翻轉 改革 澎湖科大">
+<div class="card" data-name="周倪安 台聯 顧船主，反滅漁 反對家族政治 縣議會議事透明化 海空港國際化 在地居民保留位，旅客票價自由化 邀請高科技企業來澎湖設立渡假村 強化離島交通與醫療接駁 積極復育漁業，取代消極保育" data-content="顧船主，反滅漁 反對家族政治 縣議會議事透明化 海空港國際化 在地居民保留位，旅客票價自由化 邀請高科技企業來澎湖設立渡假村 強化離島交通與醫療接駁 積極復育漁業，取代消極保育">
   <div class="card-header" onclick="toggleCard(this)">
     <span class="badge b-ttp">台聯黨</span>
     <h2>周倪安</h2>
@@ -119,27 +105,18 @@ footer { text-align: center; margin-top: 1.5rem; padding: 0.8rem 0; color: var(-
     <span class="chevron">▼</span>
   </div>
   <div class="card-body">
-    <div class="tagline"><strong>參選主軸：</strong>「翻轉大澎湖、改革沒包袱」，台聯黨主席，以「台聯守護台灣、保護澎湖」為口號，強調守護澎湖漁業與農業改革。</div>
-    <div class="policy">
-      <strong>荒地逕行代管委託經營辦法：</strong>讓廢耕農地復耕，鼓勵更多人加入農業
-      <div class="src"><span class="src-media">媒體</span><a href="https://www.cna.com.tw/news/aloc/202611100294.aspx" target="_blank" rel="noopener">中央社</a></div>
-    </div>
-    <div class="policy">
-      <strong>爭取澎湖科大成為台大澎湖分校：</strong>增設「農業經濟學院」，培育農業人才
-      <div class="src"><span class="src-media">媒體</span><a href="https://www.cna.com.tw/news/aloc/202611100294.aspx" target="_blank" rel="noopener">中央社</a></div>
-    </div>
-    <div class="policy">
-      <strong>守護澎湖漁業：</strong>漁業是澎湖重要經濟命脈，以台聯力量推動漁業保護
-      <div class="src"><span class="src-media">媒體</span><a href="https://www.cna.com.tw/news/aipl/202611010073.aspx" target="_blank" rel="noopener">中央社</a></div>
-    </div>
-    <div class="policy">
-      <strong>翻轉大澎湖、改革沒包袱：</strong>競總成立大會宣示改革決心
-      <div class="src"><span class="src-media">媒體</span><a href="https://news.ltn.com.tw/news/politics/breakingnews/5625812" target="_blank" rel="noopener">自由時報</a></div>
-    </div>
+    <div class="tagline"><strong>參選主軸：</strong>台聯黨主席，8 項政見，主打漁業復育、政治透明與海空港國際化。</div>
+<div class="policy"><strong>顧船主，反滅漁：</strong>顧船主，反滅漁。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>反對家族政治：</strong>反對家族政治。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>縣議會議事透明化：</strong>縣議會議事透明化。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>海空港國際化：</strong>海空港國際化。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>在地居民保留位，旅客票價自由化：</strong>在地居民保留位，旅客票價自由化。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>邀請高科技企業來澎湖設立渡假村：</strong>邀請高科技企業來澎湖設立渡假村。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>強化離島交通與醫療接駁：</strong>強化離島交通與醫療接駁。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>積極復育漁業，取代消極保育：</strong>積極復育漁業，取代消極保育。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
   </div>
 </div>
-
-<div class="card" data-name="葉竹林 無黨籍 振興經濟 消費券 房屋稅 地價稅 焚化爐 敬老 醫療 離島 漁業 環保 青年 海洋 軍公教" data-content="振興經濟 消費券 房屋稅 地價稅 焚化爐 敬老 醫療 離島 漁業 環保 青年 海洋 軍公教">
+<div class="card" data-name="葉竹林 無黨籍 全民共享・振興經濟 敬老扶弱・溫暖加倍 醫療急救・救命優先 離島平權・交通升級 漁港升級・四季觀光 環保自主・海島永續 青年返鄉・安居樂業 產業加速・生態永續 軍公教權益・公平保障" data-content="全民共享・振興經濟 敬老扶弱・溫暖加倍 醫療急救・救命優先 離島平權・交通升級 漁港升級・四季觀光 環保自主・海島永續 青年返鄉・安居樂業 產業加速・生態永續 軍公教權益・公平保障">
   <div class="card-header" onclick="toggleCard(this)">
     <span class="badge b-ind">無黨籍</span>
     <h2>葉竹林</h2>
@@ -148,19 +125,18 @@ footer { text-align: center; margin-top: 1.5rem; padding: 0.8rem 0; color: var(-
   </div>
   <div class="card-body">
     <div class="tagline"><strong>參選主軸：</strong>「澎湖2026-扛起澎湖・打開新局」，前馬公市長，9 大政見，定位「平民百姓對抗權貴與財團」。</div>
-    <div class="policy"><strong>全民共享・振興經濟：</strong>符合資格縣民普發１萬元振興金，活絡在地消費；推動澎湖小三通、國際包機航線，帶動觀光、商機與就業。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>敬老扶弱・溫暖加倍：</strong>中秋敬老禮金加發5,000元；65歲以上長者每月1,000元計程車津貼；身障慰問金提高至每年２萬元。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>醫療急救・救命優先：</strong>西嶼設置緊急救護站；強化二級離島急重症後送及急救資源，縮短救援時間，守住黃金救命時間。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>離島平權・交通升級：</strong>打造西嶼－馬公藍色公路；增加七美、望安定期船班及吉貝、鳥嶼船班載客量；升級機場、港埠及公共運輸。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>漁港升級・四季觀光：</strong>完善漁港、冷鏈及觀光漁市；爭取地方自治，檢討不合理捕撈限制及單一漁牌制度，增加漁民多元捕撈機會；發展四季觀光。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>環保自主・海島永續：</strong>規劃興建高科技熱能環保焚化設施，解決垃圾外運；推動海廢清理、無生態保育及澎湖沿岸全面抽砂砱。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>青年返鄉・安居樂業：</strong>提供青年首購成家、育兒支持；建立返鄉創業及就業平台，減輕青年負擔，讓年輕人在澎湖安居樂業。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>產業加速・生態永續：</strong>疏浚內海砂砱、恢復海洋生態；加速魚苗流放，增加漁業資源。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>軍公教權益・公平保障：</strong>支持澎湖公教地域加給年資加成至30％，呼籲行政院就離島服務年資應按每年2％核實累計，且讓軍職人員比照適用，公平維護離島軍公教離島加給權利。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
+<div class="policy"><strong>全民共享・振興經濟：</strong>符合資格縣民普發１萬元振興金，活絡在地消費；推動澎湖小三通、國際包機航線，帶動觀光、商機與就業。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>敬老扶弱・溫暖加倍：</strong>中秋敬老禮金加發5,000元；65歲以上長者每月1,000元計程車津貼；身障慰問金提高至每年２萬元。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>醫療急救・救命優先：</strong>西嶼設置緊急救護站；強化二級離島急重症後送及急救資源，縮短救援時間，守住黃金救命時間。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>離島平權・交通升級：</strong>打造西嶼－馬公藍色公路；增加七美、望安定期船班及吉貝、鳥嶼船班載客量；升級機場、港埠及公共運輸。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>漁港升級・四季觀光：</strong>完善漁港、冷鏈及觀光漁市；爭取地方自治，檢討不合理捕撈限制及單一漁牌制度，增加漁民多元捕撈機會；發展四季觀光。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>環保自主・海島永續：</strong>規劃興建高科技熱能環保焚化設施，解決垃圾外運；推動海廢清理、無生態保育及澎湖沿岸全面抽砂砱。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>青年返鄉・安居樂業：</strong>提供青年首購成家、育兒支持；建立返鄉創業及就業平台，減輕青年負擔，讓年輕人在澎湖安居樂業。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>產業加速・生態永續：</strong>疏浚內海砂砱、恢復海洋生態；加速魚苗流放，增加漁業資源。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>軍公教權益・公平保障：</strong>支持澎湖公教地域加給年資加成至30％，呼籲行政院就離島服務年資應按每年2％核實累計，且讓軍職人員比照適用，公平維護離島軍公教離島加給權利。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
   </div>
 </div>
-
-<div class="card" data-name="吳淑瑾 民進黨 醫療 機票 三節禮金 縣民卡 澎科大 航空 國安 世代平權" data-content="醫療 機票 三節禮金 縣民卡 澎科大 航空 國安 世代平權">
+<div class="card" data-name="吳淑瑾 民主進步 醫療與長者照護 教育與兒少支持 家庭與全齡照護 交通與國際觀光 經濟與地方發展" data-content="醫療與長者照護 教育與兒少支持 家庭與全齡照護 交通與國際觀光 經濟與地方發展">
   <div class="card-header" onclick="toggleCard(this)">
     <span class="badge b-dpp">民進黨</span>
     <h2>吳淑瑾</h2>
@@ -169,15 +145,14 @@ footer { text-align: center; margin-top: 1.5rem; padding: 0.8rem 0; color: var(-
   </div>
   <div class="card-body">
     <div class="tagline"><strong>參選主軸：</strong>代夫出征，延續執政。陳光復因意外無法參選，由妻子吳淑瑾接棒，主打「世代平權，永續發展」。</div>
-    <div class="policy"><strong>醫療與長者照護：</strong>億元級醫療基金，調醫護待遇，顧鄉親健康；三萬元敬老樂活，三節六六六，月月享千元；身心殘障慰問金，三節五五五，溫暖有尊嚴。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>教育與兒少支持：</strong>十八歲以下機票，優惠三五折，青少年追夢；兒童課後全照顧，建教補師資，家長減負擔；澎湖科大免學費，護在地高教，促青年留駐。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>家庭與全齡照護：</strong>室內全齡生活館，擋強風烈日，全世代共融；包租代管社會宅，釋放空餘屋，招國際住客；婚育家庭減稅賦，房屋地價稅，自用零稅率。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>交通與國際觀光：</strong>第三家航空起飛，促交通平權，想飛就有票；國際線贈國內線，無縫轉澎湖，觀光國際化；急難搭機保障席，澎湖輪夜航，海空顧鄉親。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>經濟與地方發展：</strong>無人載具科技島，非紅產業鏈，獨家驗證場；藍碳經濟助開源，推海洋復育，創生態永續；移工雇主零付費，政策性豁免，縣府來出頭。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
+<div class="policy"><strong>醫療與長者照護：</strong>億元級醫療基金，調醫護待遇，顧鄉親健康；三萬元敬老樂活，三節六六六，月月享千元；身心殘障慰問金，三節五五五，溫暖有尊嚴。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>教育與兒少支持：</strong>十八歲以下機票，優惠三五折，青少年追夢；兒童課後全照顧，建教補師資，家長減負擔；澎湖科大免學費，護在地高教，促青年留駐。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>家庭與全齡照護：</strong>室內全齡生活館，擋強風烈日，全世代共融；包租代管社會宅，釋放空餘屋，招國際住客；婚育家庭減稅賦，房屋地價稅，自用零稅率。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>交通與國際觀光：</strong>第三家航空起飛，促交通平權，想飛就有票；國際線贈國內線，無縫轉澎湖，觀光國際化；急難搭機保障席，澎湖輪夜航，海空顧鄉親。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>經濟與地方發展：</strong>無人載具科技島，非紅產業鏈，獨家驗證場；藍碳經濟助開源，推海洋復育，創生態永續；移工雇主零付費，政策性豁免，縣府來出頭。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
   </div>
 </div>
-
-<div class="card" data-name="陳振中 國民黨 十大政見 垃圾淨零 醫療 交通 觀光 養育 青年 安居 海洋 文化 外籍看護 南海之星" data-content="十大政見 垃圾淨零 醫療 交通 觀光 養育 青年 安居 海洋 文化 外籍看護 南海之星">
+<div class="card" data-name="陳振中 中國國民黨 十大務實行動總綱 一、翻轉四季觀光 二、優化交通運輸 三、振興農漁產業 四、永續海洋資源 五、提升醫療救護 六、全齡養育補助 七、（公報截斷，以下條目未完整顯示）" data-content="十大務實行動總綱 一、翻轉四季觀光 二、優化交通運輸 三、振興農漁產業 四、永續海洋資源 五、提升醫療救護 六、全齡養育補助 七、（公報截斷，以下條目未完整顯示）">
   <div class="card-header" onclick="toggleCard(this)">
     <span class="badge b-kmt">國民黨</span>
     <h2>陳振中</h2>
@@ -186,34 +161,32 @@ footer { text-align: center; margin-top: 1.5rem; padding: 0.8rem 0; color: var(-
   </div>
   <div class="card-body">
     <div class="tagline"><strong>參選主軸：</strong>「澎湖ㄟ代誌阿中來打拼」，30 年基層行政經驗，十大務實行動，喊出「綠地變藍天」。</div>
-    <div class="policy"><strong>十大務實行動總綱：</strong>澎湖的未來，是一場在「傳統與創新」之間尋求平衡、在「開發與保育」之間找到永續的寧靜革命。希望留給下一代一個充滿活力的「智慧低碳示範島」、一個「與海共生」的純淨家園、一個無可取代的生態與文化底蘊。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>一、翻轉四季觀光：</strong>升級媽祖園區、辦國際媽祖節；爭取國際直航；開發內海增設親海木棧道；串聯馬公至西嶼的環海廊道；優化旅遊環境與遮蔭。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>二、優化交通運輸：</strong>提升海空運量；完善公車路網；延伸七美、望安機場跑道；地下停車場免計費延至60分鐘；補助弱勢緊急就醫交通；提升道路品質。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>三、振興農漁產業：</strong>推動農漁村科技轉型與體驗經濟；建構產銷人地物互聯生態系；舉辦特色活動行銷在地產品。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>四、永續海洋資源：</strong>AI清除海洋覆網；港口航道清淤；實施科學化放流復育；捍衛合法漁權；推動海鮮「紅綠燈指南」引導友善捕撈。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>五、提升醫療救護：</strong>增聘專科醫師並增加夜間假日診次；簡化直升機後送，爭取醫學中心設停機坪；推動智慧居家監測、行動藥局與到府照護；給予服務滿三年醫護每月5,000元留任津貼。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>六、全齡養育補助：</strong>推動幼兒園免午餐點心費；閒置教室轉型托嬰與復健中心；增設親子館與共融公園；建立數位健康存摺關懷長者；外籍看護家庭每月補助10,000元。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>七～十項：</strong>公報 PDF 解析截斷於第六項，第七至第十項內容請查閱完整公報原文。<div class="src"><span class="src-ballot">選舉公報</span><span style="font-size:0.75rem;color:var(--muted)">（PDF 截斷，待補齊）</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
+<div class="policy"><strong>十大務實行動總綱：</strong>澎湖的未來，是一場在「傳統與創新」之間尋求平衡、在「開發與保育」之間找到永續的寧靜革命。希望我們留給下一代一個充滿活力的「智慧低碳示範島」、一個「與海共生」的純淨家園、一個無可取代的生態與文化底蘊。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>一、翻轉四季觀光：</strong>升級媽祖園區、辦國際媽祖節；爭取國際直航；開發內海增設親海木棧道；串聯馬公至西嶼的環海廊道；優化旅遊環境與遮蔭。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>二、優化交通運輸：</strong>提升海空運量；完善公車路網；延伸七美、望安機場跑道；地下停車場免計費延至60分鐘；補助弱勢緊急就醫交通；提升道路品質。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>三、振興農漁產業：</strong>推動農漁村科技轉型與體驗經濟；建構產銷人地物互聯生態系；舉辦特色活動行銷在地產品。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>四、永續海洋資源：</strong>AI清除海洋覆網；港口航道清淤；實施科學化放流復育；捍衛合法漁權；推動海鮮「紅綠燈指南」引導友善捕撈。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>五、提升醫療救護：</strong>增聘專科醫師並增加夜間假日診次；簡化直升機後送，爭取醫學中心設停機坪；推動智慧居家監測、行動藥局與到府照護；給予服務滿三年醫護每月5,000元留任津貼。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>六、全齡養育補助：</strong>推動幼兒園免午餐點心費；閒置教室轉型托嬰與復健中心；增設親子館與共融公園；建立數位健康存摺關懷長者；外籍看護家庭每月補助10,000元。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>七、（公報截斷，以下條目未完整顯示）：</strong>公報PDF第1頁截斷於第七項，第七至第十項需查閱完整公報原文。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
   </div>
 </div>
-
-<div class="card" data-name="陳盡川 牛哥 無黨籍 海洋 漁業 鯨豚 蝠魟 魚球 鹹水煙 銀合歡 觀光 志工" data-content="海洋 漁業 鯨豚 蝠魟 魚球 鹹水煙 銀合歡 觀光 志工 牛哥">
+<div class="card" data-name="陳盡川 無黨籍 保護富裕澎湖海 深耕美化澎湖山 維護澎湖路與觀光願景" data-content="保護富裕澎湖海 深耕美化澎湖山 維護澎湖路與觀光願景">
   <div class="card-header" onclick="toggleCard(this)">
-    <span class="badge b-teal">無黨籍</span>
+    <span class="badge b-ind">無黨籍</span>
     <h2>陳盡川（牛哥）</h2>
     <span class="num">6號</span>
     <span class="chevron">▼</span>
   </div>
   <div class="card-body">
     <div class="tagline"><strong>參選主軸：</strong>澎湖著名海洋保育志工，長期致力於澎湖海陸生態環境保護，以「海、山、路、觀光」施政願景參選。</div>
-    <div class="policy"><strong>保護富裕澎湖海：</strong>恢復4-50年前富饒海洋，處處魚球強強滾，鯨豚蝠魟伴人遊，漁業、觀光兩得益，永續海洋藏富子孫。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>深耕美化澎湖山：</strong>活化土地創造鹹水煙特色農業，綠美化田園風光，相佐觀光產值，銀合歡全面性資源化開發。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
-    <div class="policy"><strong>維護澎湖路與觀光願景：</strong>海、山、路、觀光及治縣委員會。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC</a></div></div>
+<div class="policy"><strong>保護富裕澎湖海：</strong>恢復4-50年前富饒海洋，處處魚球強強滾，鯨豚蝠魟伴人遊，漁業、觀光兩得益，永續海洋藏富子孫。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>深耕美化澎湖山：</strong>活化土地創造鹹水煙特色農業，綠美化田園風光，相佐觀光產值，銀合歡全面性資源化開發。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
+<div class="policy"><strong>維護澎湖路與觀光願景：</strong>海、山、路、觀光及治縣委員會。<div class="src"><span class="src-ballot">選舉公報</span><a href="https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/04%E7%B8%A3%E5%B8%82%E9%95%B7/115%E5%B9%B4/%E6%BE%8E%E6%B9%96%E7%B8%A3%E7%B8%A3%E9%95%B7.pdf" target="_blank" rel="noopener">CEC 選舉公報</a></div></div>
   </div>
 </div>
 
-</div><!-- /candidates -->
-
+</div>
 <div class="sim-section">
   <h2>政見相似度分析</h2>
   <p class="sim-desc">以選舉公報政見原文，TF-IDF bigram cosine similarity 計算各候選人整體政策語言重疊程度。數值越高代表越接近。</p>
@@ -222,7 +195,6 @@ footer { text-align: center; margin-top: 1.5rem; padding: 0.8rem 0; color: var(-
   <div style="font-size:0.85rem;font-weight:700;color:var(--accent);margin-bottom:0.6rem;">最相似的跨候選人政見配對</div>
   <div id="simPairs"></div>
 </div>
-
 <div class="src-section">
   <h2>資料來源</h2>
   <ul class="src-list">
@@ -236,27 +208,29 @@ footer { text-align: center; margin-top: 1.5rem; padding: 0.8rem 0; color: var(-
     <li><span class="src-media">追蹤</span><span>選舉政見追蹤</span><a href="https://www.twpromisetracker.org/elections/2026%E5%B9%B4%E6%BE%8E%E6%B9%96%E7%B8%A3%E9%95%B7%E9%81%B8%E8%88%89" target="_blank" rel="noopener">twpromisetracker.org</a></li>
   </ul>
 </div>
-
 <footer>資料蒐集日期：2026 年 11 月 18 日 · 政見以澎湖縣選舉委員會選舉公報為準 · 非官方資訊彙整</footer>
 </div>
-
 <script>
 function toggleCard(h) { h.closest('.card').classList.toggle('open'); }
 
-const SIM_LABELS = ["許智富(1)","周倪安(2)","葉竹林(3)","吳淑瑾(4)","陳振中(5)","陳盡川(6)"];
+const SIM_LABELS = ["許智富(1)", "周倪安(2)", "葉竹林(3)", "吳淑瑾(4)", "陳振中(5)", "陳盡川(6)"];
 const SIM_MATRIX = [
-  [1.000, 0.422, 0.040, 0.017, 0.065, 0.025],
-  [0.422, 1.000, 0.060, 0.018, 0.052, 0.039],
-  [0.040, 0.060, 1.000, 0.179, 0.222, 0.138],
-  [0.017, 0.018, 0.179, 1.000, 0.169, 0.073],
-  [0.065, 0.052, 0.222, 0.169, 1.000, 0.078],
-  [0.025, 0.039, 0.138, 0.073, 0.078, 1.000]
+  [1.000, 0.102, 0.284, 0.129, 0.241, 0.126],
+  [0.102, 1.000, 0.107, 0.113, 0.096, 0.058],
+  [0.284, 0.107, 1.000, 0.153, 0.200, 0.118],
+  [0.129, 0.113, 0.153, 1.000, 0.141, 0.060],
+  [0.241, 0.096, 0.200, 0.141, 1.000, 0.062],
+  [0.126, 0.058, 0.118, 0.060, 0.062, 1.000]
 ];
 const SIM_PAIRS = [
-  {sim:0.201, a:"葉竹林(3)", aPolicy:"敬老扶弱・溫暖加倍（65歲計程車津貼、身障慰問金）", b:"吳淑瑾(4)", bPolicy:"醫療與長者照護（三萬元敬老樂活、三節六六六）"},
-  {sim:0.169, a:"葉竹林(3)", aPolicy:"青年返鄉・安居樂業（首購成家、育兒支持）", b:"吳淑瑾(4)", bPolicy:"教育與兒少支持（兒童課後全照顧、澎科大免學費）"},
-  {sim:0.163, a:"葉竹林(3)", aPolicy:"全民共享・振興經濟（普發1萬元振興金）", b:"吳淑瑾(4)", bPolicy:"交通與國際觀光（第三家航空、國際線贈國內線）"},
-  {sim:0.153, a:"葉竹林(3)", aPolicy:"產業加速・生態永續（內海疏浚、魚苗流放）", b:"陳盡川(6)", bPolicy:"保護富裕澎湖海（恢復富饒海洋、鯨豚蝠魟）"}
+  {sim:0.271, a:"周倪安(2)", aPolicy:"海空港國際化", b:"吳淑瑾(4)", bPolicy:"交通與國際觀光"},
+  {sim:0.239, a:"許智富(1)", aPolicy:"衣", b:"葉竹林(3)", bPolicy:"青年返鄉・安居樂業"},
+  {sim:0.206, a:"葉竹林(3)", aPolicy:"敬老扶弱・溫暖加倍", b:"吳淑瑾(4)", bPolicy:"醫療與長者照護"},
+  {sim:0.171, a:"周倪安(2)", aPolicy:"海空港國際化", b:"陳振中(5)", bPolicy:"一、翻轉四季觀光"},
+  {sim:0.169, a:"許智富(1)", aPolicy:"行", b:"周倪安(2)", bPolicy:"強化離島交通與醫療接駁"},
+  {sim:0.169, a:"許智富(1)", aPolicy:"行", b:"陳振中(5)", bPolicy:"二、優化交通運輸"},
+  {sim:0.161, a:"葉竹林(3)", aPolicy:"青年返鄉・安居樂業", b:"吳淑瑾(4)", bPolicy:"教育與兒少支持"},
+  {sim:0.157, a:"葉竹林(3)", aPolicy:"全民共享・振興經濟", b:"吳淑瑾(4)", bPolicy:"交通與國際觀光"}
 ];
 
 function simBg(v) { return v>=0.5?'#B8956B':v>=0.3?'#D4A574':v>=0.15?'#E8C9A0':v>=0.08?'#F0DCC0':'#F5F0E8'; }

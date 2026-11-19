@@ -5,7 +5,7 @@ description: 無黨籍澎湖縣長候選人，前澎湖縣副縣長，主打路�
 resource: https://blindvote.app/bio/penghu/hsu-chih-fu
 tags: [澎湖, 縣長, 無黨籍, 許智富]
 status: stable
-generated: { by: process:ballot-refresh, at: 2026-11-19T22:08:10+08:00 }
+generated: { by: process:ballot-refresh, at: 2026-11-19T22:29:30+08:00 }
 stale_after: 2026-11-28T00:00:00Z
 sources:
   - id: ltn-luping
